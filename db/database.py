@@ -24,7 +24,7 @@ SessionLocal2 = sessionmaker(autocommit=False, autoflush=False, bind=engine2)
 Base2 = declarative_base()
 
 #تامین کننده های فروشگاه
-SQLALCHEMY_DATABASE_URL3 = "sqlite:///./commodity.db"
+SQLALCHEMY_DATABASE_URL3 = "sqlite:///./seller.db"
 
 engine3 = create_engine(
     SQLALCHEMY_DATABASE_URL3,
@@ -35,7 +35,7 @@ SessionLocal3 = sessionmaker(autocommit=False, autoflush=False, bind=engine3)
 Base3 = declarative_base()
 
 #گزارش ها
-SQLALCHEMY_DATABASE_URL4 = "sqlite:///./commodity.db"
+SQLALCHEMY_DATABASE_URL4 = "sqlite:///./text.db"
 
 engine4 = create_engine(
     SQLALCHEMY_DATABASE_URL4,
@@ -45,3 +45,15 @@ engine4 = create_engine(
 SessionLocal4 = sessionmaker(autocommit=False, autoflush=False, bind=engine4)
 
 Base4 = declarative_base()
+
+# سفارش خری
+SQLALCHEMY_DATABASE_URL5 = "sqlite:///./gets.db"
+
+engine5 = create_engine(
+    SQLALCHEMY_DATABASE_URL5,
+    connect_args={"check_same_thread": False}
+)
+
+SessionLocal5 = sessionmaker(autocommit=False, autoflush=False, bind=engine5)
+
+Base5 = declarative_base()
