@@ -5,6 +5,7 @@ from db.database import Base1,Base2,Base3,Base4,Base5
 class commodity(Base1):
     __tablename__ = "commodites"
 
+    id = Column(Integer, primary_key=True)
     name = Column(String, index=True)
     sku = Column(Integer)
     price = Column(Integer)
@@ -16,6 +17,7 @@ class commodity(Base1):
 class users(Base2):
     __tablename__ = "users"
 
+    id = Column(Integer, primary_key=True)
     fname = Column(String, index=True)
     lname = Column(String, index=True)
     kname = Column(String, index=True , unique=True )
@@ -26,6 +28,7 @@ class users(Base2):
 class seller(Base3):
     __tablename__ = "seller"
 
+    id = Column(Integer, primary_key=True)
     name = Column(String, index=True)
     subject = Column(String, index=True)
     tel = Column(Integer)
@@ -36,6 +39,7 @@ class seller(Base3):
 class text(Base4):
     __tablename__ = "texts"
 
+    id = Column(Integer, primary_key=True)
     subject = Column(String, index=True)
     text = Column(String, index=True)
 
@@ -43,6 +47,7 @@ class text(Base4):
 class gets(Base5):
     __tablename__ = "list"
     
+    id = Column(Integer, primary_key=True)
     name = Column(String)
     tedad = Column(Integer)
     subject = Column(String)

@@ -12,7 +12,7 @@ class commodityBase(BaseModel):
     #pic
 
 class commodity(commodityBase):
-
+    id : int 
     class Config:
         orm_mode = True
 
@@ -25,7 +25,7 @@ class usersBase(BaseModel):
     password: str = Field(min_length=8)
 
 class users(usersBase):
-
+    id:int
     class Config:
         orm_mode = True
 
@@ -38,7 +38,7 @@ class sellerBase(BaseModel):
     point: int = Field(gt=1, lt=10)
 
 class seller(sellerBase):
-
+    id:int
     class Config:
         orm_mode = True
 
@@ -49,7 +49,7 @@ class textBase(BaseModel):
     text: str = Field(min_length=1)
 
 class text(textBase):
-
+    id:int
     class Config:
         orm_mode = True
 
@@ -62,7 +62,7 @@ class getsBase(BaseModel):
     vaziat: int = Field(gt=0, lt=4)
 
 class gets(getsBase):
-
+    id:int
     class Config:
         orm_mode = True
 
