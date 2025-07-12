@@ -22,8 +22,8 @@ def get_db2():
     finally:
         db.close()
 
-
-@router.post("/vorod", response_class=HTMLResponse)
+#ثبت نام
+@router.post("/sabt", response_class=HTMLResponse)
 def register(
     request: Request,
     fname: str = Form(...),
@@ -59,4 +59,26 @@ def register(
     db.add(new_user)
     db.commit()
     token = create_token({"sub": kname, "nam": fname, "nam2": lname})
-    return templates.TemplateResponse("vorod.html", {"request": request, "username": fname, "username2": lname, "token": token})
+    return templates.TemplateResponse("sabt.html", {"request": request, "username": fname, "username2": lname, "token": token})
+
+#ورود
+@router.post("/vorod",response_class=HTMLResponse)
+def vorod (request: Request,
+    kname: str = Form(...),
+    password: str = Form(...),
+    db: Session = Depends(get_db2)
+):
+    user = db.query(users_model).filter(users_model.kname == kname).first()
+    if  user:
+        if  verify_password(password, user.hashed_password):
+            token = create_token({"sub": kname})
+            return templates.TemplateResponse("vorod.html", {"request": request, "f": kname, "token": token})
+        
+        else:
+            return HTMLResponse("رمز نادرست!", status_code=401)
+            
+    else:    
+        return HTMLResponse(" کاربر یافت نشد!", status_code=401)
+
+            
+            

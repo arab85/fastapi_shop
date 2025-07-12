@@ -33,15 +33,6 @@ def delete_commodity(db: Session, n : str = "", sku : int = 0):
     db.query(commodity).filter(commodity.sku == sku).delete()
     db.commit()     
 
-#کراب کاربر        
-
-def search_user(db: Session, n : str = ""):
-
-    adam = db.query(commodity).filter(commodity.name == n).first()
-    if adam is not None:
-        return f"{adam.name}"
-    else:
-        return "no"#main
 
 #کراب تامین کننده
 def create_seler(db: Session, adam: sellerBase):

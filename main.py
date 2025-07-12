@@ -3,7 +3,7 @@ from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from db.database import SessionLocal1,SessionLocal2,SessionLocal3,SessionLocal4,SessionLocal5, engine1 , engine2,engine3,engine4,engine5
 from models import product
-from crub.product import create_commodity,search_commodity,delete_commodity,search_user,create_seler,search_seler,create_text,search_text,delete_text,create_se,search_se,delete_se
+from crub.product import create_commodity,search_commodity,delete_commodity,create_seler,search_seler,create_text,search_text,delete_text,create_se,search_se,delete_se
 from schemas.product import commodity,seller,text,gets,users
 from sqlalchemy.orm import Session
 
@@ -61,6 +61,10 @@ def admin(request: Request):
 @app.get("/users/login", response_class=HTMLResponse)
 def login(request: Request):
     return templates.TemplateResponse("login.html", {"request": request})
+#ورود کاربر
+@app.get("/users/signup", response_class=HTMLResponse)
+def signup(request: Request):
+    return templates.TemplateResponse("signup.html", {"request": request})
 
 
     
