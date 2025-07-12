@@ -34,10 +34,6 @@ def delete_commodity(db: Session, n : str = "", sku : int = 0):
     db.commit()     
 
 #کراب کاربر        
-def create_user(db: Session, adam: usersBase):
-    db_user = users(**adam.dict())
-    db.add(db_user)
-    db.commit() 
 
 def search_user(db: Session, n : str = ""):
 
@@ -53,7 +49,7 @@ def create_seler(db: Session, adam: sellerBase):
     db.add(seller)
     db.commit() 
 
-def search_selr(db: Session, n : str = ""):
+def search_seler(db: Session, n : str = ""):
 
     adam = db.query(seller).filter(seller.name == n).first()
     if adam is not None:
