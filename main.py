@@ -7,11 +7,6 @@ from crub.product import create_commodity,search_commodity,delete_commodity,crea
 from schemas.product import commodity,seller,text,gets,users
 from sqlalchemy.orm import Session
 
-product.Base1.metadata.create_all(bind=engine1)
-product.Base2.metadata.create_all(bind=engine2)
-product.Base3.metadata.create_all(bind=engine3)
-product.Base4.metadata.create_all(bind=engine4)
-product.Base5.metadata.create_all(bind=engine5)
 
 app = FastAPI()
 
@@ -19,30 +14,7 @@ templates = Jinja2Templates(directory="templates")
 from api.product import router as product_router
 app.include_router(product_router)
 
-def get_db2():
-    db = SessionLocal2()
-    try:
-        yield db
-    finally:
-        db.close()
-def get_db3():
-    db = SessionLocal3()
-    try:
-        yield db
-    finally:
-        db.close()
-def get_db4():
-    db = SessionLocal4()
-    try:
-        yield db
-    finally:
-        db.close()
-def get_db5():
-    db = SessionLocal5()
-    try:
-        yield db
-    finally:
-        db.close()
+
 
 
 #صفحه اصلی
@@ -67,8 +39,24 @@ def signup(request: Request):
     return templates.TemplateResponse("signup.html", {"request": request})
 #صفحه اصلی کاربر
 @app.get("/home/user", response_class=HTMLResponse)
-def homeu(request: Request):
+def home_user(request: Request):
     return templates.TemplateResponse("home_user.html", {"request": request})
+@app.post("/sub", response_class=HTMLResponse)
+def log_admin(request: Request,
+    name: str = Form(...),
+    password: str = Form(...),
+):
+    if name == "modir" and password == "modir":
+        return templates.TemplateResponse("modir.html", {"request": request , "name" : "modir"})
+    if name == "admin" and password == "admin":
+        return templates.TemplateResponse("modir.html", {"request": request , "name":"admin"})
+    else:
+        return HTMLResponse("اشتباه وارد کردی" ,status_code=401)
+#صفحه اصلی ادمین
+@app.get("/home/admin", response_class=HTMLResponse)
+def home_user(request: Request):
+    return templates.TemplateResponse("home_admin.html", {"request": request})
+
 
 
 
