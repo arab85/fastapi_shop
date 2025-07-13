@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 from db.database import SessionLocal2, engine2
 from schemas.product import usersBase
 from models.product import users as users_model
-from auth.auth import hash_password, verify_password, create_token ,is_password_duplicate,validate_email,validate_password
+from auth.auth import hash_password, verify_password, create_token ,validate_email,validate_password
 from db.database import Base2
 
 Base2.metadata.create_all(bind=engine2)
@@ -63,22 +63,20 @@ def register(
 
 #ورود
 @router.post("/vorod",response_class=HTMLResponse)
-def vorod (request: Request,
-    kname: str = Form(...),
-    password: str = Form(...),
-    db: Session = Depends(get_db2)
-):
+def vorod(request: Request,
+          kname: str = Form(...),
+          password: str = Form(...),
+          db: Session = Depends(get_db2)):
     user = db.query(users_model).filter(users_model.kname == kname).first()
-    if  user:
-        if  verify_password(password, user.hashed_password):
+    if user:
+        if verify_password(password, user.password):
             token = create_token({"sub": kname})
             return templates.TemplateResponse("vorod.html", {"request": request, "f": kname, "token": token})
-        
         else:
             return HTMLResponse("رمز نادرست!", status_code=401)
-            
-    else:    
-        return HTMLResponse(" کاربر یافت نشد!", status_code=401)
+    else:
+        return HTMLResponse("کاربر یافت نشد!", status_code=401)
+
 
             
             

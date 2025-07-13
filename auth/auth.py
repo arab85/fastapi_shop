@@ -24,12 +24,6 @@ def create_token(data: dict):
     to_encode.update({"exp": expire})
     return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
 
-def is_password_duplicate(db: Session, plain_password: str):
-    users = db.query(users_model).all()
-    for user in users:
-        if verify_password(plain_password, user.password):
-            return True
-    return False
 
 
 EMAIL_REGEX = re.compile(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")

@@ -65,6 +65,11 @@ def login(request: Request):
 @app.get("/users/signup", response_class=HTMLResponse)
 def signup(request: Request):
     return templates.TemplateResponse("signup.html", {"request": request})
+#صفحه اصلی کاربر
+@app.get("/home/user", response_class=HTMLResponse)
+def homeu(request: Request):
+    return templates.TemplateResponse("home_user.html", {"request": request})
+
 
 
     
