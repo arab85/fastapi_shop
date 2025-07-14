@@ -11,8 +11,10 @@ from sqlalchemy.orm import Session
 app = FastAPI()
 
 templates = Jinja2Templates(directory="templates")
-from api.product import router as product_router
+from api.user import router as product_router
+from api.kala import router as product2_router
 app.include_router(product_router)
+app.include_router(product2_router)
 
 
 
@@ -56,6 +58,22 @@ def log_admin(request: Request,
 @app.get("/home/admin", response_class=HTMLResponse)
 def home_user(request: Request):
     return templates.TemplateResponse("home_admin.html", {"request": request})
+#لیست محصولات
+@app.get("/admin/commodity", response_class=HTMLResponse)
+def list(request: Request):
+    return templates.TemplateResponse("list1.html", {"request": request})
+#مدیریت محصولات
+@app.get("/admin/seler", response_class=HTMLResponse)
+def sel(request: Request):
+    return templates.TemplateResponse("seler.html", {"request": request})
+#مدیریت تامین کننده ها
+@app.get("/admin/manage", response_class=HTMLResponse)
+def Manage(request: Request):
+    return templates.TemplateResponse("manage.html", {"request": request})
+#گزارش 
+@app.get("/admin/report", response_class=HTMLResponse)
+def report(request: Request):
+    return templates.TemplateResponse("report.html", {"request": request})
 
 
 
