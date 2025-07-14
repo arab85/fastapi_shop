@@ -4,10 +4,10 @@ from pydantic import BaseModel , Field
 #کلاس کالا ها
 class commodityBase(BaseModel):
     name: str = Field(min_length=1)
-    sku: int = Field(gt=1000, lt=10000)
-    price: int = Field(gt=0)
-    tedad: int = Field(gt=0)
-    min_threshold: int = Field(gt=0)
+    sku: int 
+    price: int 
+    tedad: int 
+    min_threshold: int 
     subject: str = Field(min_length=1)
     #pic
 

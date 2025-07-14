@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>sabt</title>
+</head>
+<body>
+    <h2>ثبت کالا </h2>
+    <form action="/add/sub" method="post">
+        <label>نام :</label><br>
+        <input type="text" name="name" required><br>
+        <label>کد :</label><br>
+        <input type="number" name="sku" required><br>
+        <label>قیمت :</label><br>
+        <input type="number" name="price" step="10" required><br>
+        <label>تعداد :</label><br>
+        <input type="number" name="tedad" step="1" required><br>
+        <label> نقطه خرید:</label><br>
+        <input type="number" name="min_threshold" required><br><br>
+        <label>دسته :</label><br>
+        <input type="text" name="subject" required><br>
+        <button type="submit">ثبت </button>
+    </form>
+    <button>
+        <a href="/home/admin/manage">بازگشت</a>
+    </button>
+</body>
+</html>
