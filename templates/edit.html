@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <title>فرم خرید</title>
+  <style>
+    #name {
+      display: none; 
+      margin-top: 20px;
+    }
+    #tel {
+      display: none; 
+      margin-top: 20px;
+    }
+    #email {
+      display: none; 
+      margin-top: 20px;
+    }
+    #subject {
+      display: none; 
+      margin-top: 20px;
+    }
+    #pointValue {
+      display: none; 
+      margin-top: 20px;
+    }
+    #time {
+      display: none; 
+      margin-top: 20px;
+    }
+    #from {
+      display: none; 
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+    <div>
+        <input id="name0" type="checkbox"/>
+        <label for="name0">اسم </label>
+      </div>        
+      <div>
+        <input id="subject0" type="checkbox" />
+        <label for="subject0">موضوع</label>
+      </div>
+      <div>
+        <input id="tel0" type="checkbox"/>
+        <label for="tel0">تلفن</label>
+      </div>
+      <div>
+        <input id="email0" type="checkbox" />
+        <label for="email0">ایمیل</label>
+      </div>
+      <div>
+        <input id="point0" type="checkbox" />
+        <label for="point0">امتیاز</label>
+      </div>
+      <div>
+        <input id="time0" type="checkbox" />
+        <label for="time0">زمان تحویل</label>
+      </div>
+        
+    <button type="button" onclick="checkbuy()">ارسال</button>
+
+      
+
+    <form id="from" action="/edit/sub" method="post">
+        <label for = "name">نام :</label><br>
+        <input id="name" type="text" name="name" required><br>
+
+
+    <label for ="pointValue" >point :</label><br>
+    <input type="range" min="1" max="10" name="point" id="pointRange" >
+    <span id="pointValue">5</span> <!-- اینجا مقدار اولیه اسلایدر رو میذاریم --> 
+
+
+    <label for = " tel">tel :</label><br>
+    <input type="number" id = "tel" name="tel" ><br>
+
+
+    <label for="time">time :</label><br>
+    <input id = "time" type="number" name="time" step="1" ><br>
+
+
+    <label for = "email"> email :</label><br>
+    <input id="email" type="email" name="email" ><br><br>
+
+
+    <label for = "subject">دسته :</label><br>
+    <input type="text" id="subject" name="subject" ><br>
+
+    <label>اسم اولیه</label>
+    <input type="text" name="namea" >
+
+    <button type="submit">ثبت </button>
+</form>
+  <button>
+    <a href="/home/admin/seler">بازگشت</a>
+</button>
+
+
+  <script>
+    function checkbuy() {
+    let isname = document.getElementById('name0').checked;
+    let istel = document.getElementById('tel0').checked;
+    let issubject = document.getElementById('subject0').checked;
+    let ispoint = document.getElementById('point0').checked;
+    let isemail = document.getElementById('email0').checked;
+    let istime = document.getElementById('time0').checked;
+    const name = document.getElementById('name');
+    const tel = document.getElementById('tel');
+    const subject = document.getElementById('subject');
+    const point = document.getElementById('pointValue');
+    const email = document.getElementById('email');
+    const time = document.getElementById('time');
+    document.getElementById('from').style.display="block";
+
+      if (isname) {
+        name.style.display = "block"; 
+      }
+      else{
+        name.style.display = "none"; 
+      } 
+      if (isemail) {
+        email.style.display = "block"; 
+      }
+      else{
+        email.style.display = "none"; 
+      } 
+      if (ispoint) {
+        point.style.display = "block"; 
+      }
+      else{
+        point.style.display = "none"; 
+      } 
+      if (issubject) {
+        subject.style.display = "block"; 
+      }
+      else{
+        subject.style.display = "none"; 
+      } 
+      if (istel) {
+        tel.style.display = "block"; 
+      }
+      else{
+        tel.style.display = "none"; 
+      } 
+      if (istime) {
+        time.style.display = "block"; 
+      }
+      else{
+        time.style.display = "none"; 
+      }
+      const rangeInput = document.getElementById('pointRange');
+      const rangeValue = document.getElementById('pointValue');
+
+      // مقدار اولیه رو میذاریم برابر مقدار پیش‌فرض اسلایدر
+      rangeValue.textContent = rangeInput.value;
+
+      // وقتی کاربر اسلایدر رو تغییر داد، مقدارش رو نمایش بده
+      rangeInput.addEventListener('input', () => {
+        rangeValue.textContent = rangeInput.value;
+      });
+    }
+  </script>
+
+</body>
+</html>

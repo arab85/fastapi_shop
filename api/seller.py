@@ -31,6 +31,11 @@ def add(request: Request):
 def dalate(request: Request):
     return templates.TemplateResponse("delate2.html", {"request": request})
 
+@router3.get("/home/admin/seller/edit", response_class=HTMLResponse)
+def edit(request: Request):
+    return templates.TemplateResponse("edit.html", {"request": request})
+
+
 #لیست
 @router3.get("/home/admin/seller/list", response_class=HTMLResponse)
 def sel(request: Request ,db : Session=Depends(get_db3)):
@@ -83,3 +88,41 @@ def sub3(
         return templates.TemplateResponse("sabt6.html", {"request": request , "name":name} )
     else:
         return HTMLResponse("یافت نشد" , status_code=401)
+
+#ویرایش
+@router3.post("/edit/sub", response_class=HTMLResponse)
+def edit(
+    request: Request,
+    name: str = Form(None),
+    point: int = Form(0),
+    tel : int = Form(0),
+    time: int = Form(0),
+    email: str = Form(None),
+    subject: str = Form(None),
+    namea: str = Form(...),
+    db: Session = Depends(get_db3)
+):
+    try:
+        validate_number(point , time , tel)
+    except HTTPException as e:
+        return HTMLResponse(e.detail, status_code=e.status_code)
+    check = db.query(seller).filter(seller.name == namea).first()
+    if check:
+        if name is not None:
+            check.name=name
+        if tel is not None:
+            check.tel=tel
+        if email is not None:
+            check.email=email
+        if point is not None:
+            check.point=point
+        if subject is not None:
+            check.subject=subject
+        if time is not None:
+            check.time=time
+        
+
+        db.commit()
+        return templates.TemplateResponse("sabt7.html", {"request": request , "name":name })
+    else :
+        return HTMLResponse("اسم  نیست " , status_code=401)
