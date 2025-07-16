@@ -1,0 +1,24 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>لیست محصولات</title>
+</head>
+<body>
+    <h1>محصولات</h1>
+    <ul>
+        {% for p in adams %}
+            <ol type="1">
+                <strong>{{ p.name }}</strong> - 
+                {{ p.tel }} تلفن-
+                {{p.point}} امتیاز- 
+            </li>
+        {% else %}
+            <li>ادمی موجود نیست.</li>
+        {% endfor %}
+    </ul><br><br>
+        <a href="/home/admin/seler">بازگشت</a>
+    </button>
+</body>
+</html>

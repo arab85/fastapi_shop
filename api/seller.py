@@ -30,11 +30,12 @@ def add(request: Request):
 @router3.get("/home/admin/seller/delate", response_class=HTMLResponse)
 def dalate(request: Request):
     return templates.TemplateResponse("delate2.html", {"request": request})
-#امتیاز دادن
 
-@router3.get("/home/admin/seller/point", response_class=HTMLResponse)
-def sel(request: Request):
-    return templates.TemplateResponse("point.html", {"request": request})
+#لیست
+@router3.get("/home/admin/seller/list", response_class=HTMLResponse)
+def sel(request: Request ,db : Session=Depends(get_db3)):
+    adams = db.query(seller).all()
+    return templates.TemplateResponse("list2.html", {"request": request, "adams":adams})
 
 #اضافه محصول
 @router3.post("/add2/sub", response_class=HTMLResponse)
@@ -68,3 +69,17 @@ def sub(
         return templates.TemplateResponse("sabt5.html", {"request": request , "name":name })
     else :
         return HTMLResponse("اسم تکراری است " , status_code=401)
+
+@router3.post("/delate/sub2" , response_class=HTMLResponse)
+def sub3(
+    request: Request,
+    name: str = Form(...),
+    db: Session = Depends(get_db3)
+):
+    adam = db.query(seller).filter(seller.name == name).first()
+    if adam is not None:
+        db.query(seller).filter(seller.name == name).delete()
+        db.commit()
+        return templates.TemplateResponse("sabt6.html", {"request": request , "name":name} )
+    else:
+        return HTMLResponse("یافت نشد" , status_code=401)
