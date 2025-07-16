@@ -37,6 +37,6 @@ def validate_password(password: str):
     if len(password) < 8:
         raise HTTPException(status_code=400, detail="رمز عبور باید حداقل ۸ کاراکتر باشد.")
     
-def validate_number(price: int , tedad:int , sku:int , min_threshold:int):
+def validate_number(price: int=0 , tedad:int=0 , sku:int=0 , min_threshold:int=0):
     if price<0 or tedad<0 or sku < 0 or min_threshold<0:
         raise HTTPException(status_code=400, detail=" عدد را مثبت وارد کنید.")

@@ -33,9 +33,10 @@ class users(usersBase):
 class sellerBase(BaseModel):
     name: str = Field(min_length=1)
     subject: str = Field(min_length=1, max_length=20)
-    tel: int = Field(min_length=5, max_length=7)
+    tel: int = Field(gt=1, lt=7)
     email : str = Field(min_length=1)
     point: int = Field(gt=1, lt=10)
+    time: int
 
 class seller(sellerBase):
     id:int

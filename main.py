@@ -13,9 +13,17 @@ app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 from api.user import router as product_router
 from api.manage import router2 as product2_router
+from api.seller import router3 as product3_router
+app.include_router(product3_router)
 app.include_router(product_router)
 app.include_router(product2_router)
 
+def get_db1():
+    db = SessionLocal1()
+    try:
+        yield db
+    finally:
+        db.close()
 
 
 
@@ -58,10 +66,7 @@ def log_admin(request: Request,
 @app.get("/home/admin", response_class=HTMLResponse)
 def home_user(request: Request):
     return templates.TemplateResponse("home_admin.html", {"request": request})
-#لیست محصولات
-@app.get("/home/admin/commodity", response_class=HTMLResponse)
-def list(request: Request):
-    return templates.TemplateResponse("list1.html", {"request": request})
+
 #مدیریت محصولات
 @app.get("/home/admin/seler", response_class=HTMLResponse)
 def sel(request: Request):
@@ -74,6 +79,7 @@ def Manage(request: Request):
 @app.get("/home/admin/report", response_class=HTMLResponse)
 def report(request: Request):
     return templates.TemplateResponse("report.html", {"request": request})
+
 
 
 

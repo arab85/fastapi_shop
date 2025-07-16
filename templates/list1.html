@@ -1,12 +1,26 @@
+
+
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>list</title>
-  </head>
-  <body>
-    <H1>لیست</H1>
-    <button>
-      <a href="/home/admin">بازگشت</a>
-  </button>
-  </body>
+<head>
+    <title>لیست محصولات</title>
+</head>
+<body>
+    <h1>محصولات</h1>
+    <ul>
+        {% for p in kalas %}
+            <ol type="1">
+                <strong>{{ p.name }}</strong> - 
+                {{ p.subject }} -
+                {{p.sku}}- 
+                {{ p.price }} تومان - 
+                موجودی: {{ p.tedad }}
+            </li>
+        {% else %}
+            <li>محصولی موجود نیست.</li>
+        {% endfor %}
+    </ul><br><br>
+        <a href="/home/admin/manage">بازگشت</a>
+    </button>
+</body>
 </html>

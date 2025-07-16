@@ -34,6 +34,7 @@ class seller(Base3):
     tel = Column(Integer)
     email = Column(String, index=True , unique=True)
     point = Column(Integer)
+    time = Column(Integer)
 
 #گزارش
 class text(Base4):

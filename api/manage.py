@@ -8,6 +8,7 @@ from models.product import commodity
 from db.database import Base1
 from auth.auth import validate_number
 
+
 Base1.metadata.create_all(bind=engine1)
 
 
@@ -51,15 +52,67 @@ def sub(
         validate_number(price , tedad , sku , min_threshold)
     except HTTPException as e:
         return HTMLResponse(e.detail, status_code=e.status_code)
-    kala = commodity(
-        name=name,
-        sku=sku,
-        price=price,
-        tedad=tedad,
-        min_threshold=min_threshold,
-        subject=subject
-    )
-    db.add(kala)
-    db.commit()
-    return templates.TemplateResponse("sabt2.html", {"request": request , "name":name ,"price":price ,"tedad": tedad})
+    check = db.query(commodity).filter(commodity.sku == sku).first()
+    if not check:
 
+        kala = commodity(
+            name=name,
+            sku=sku,
+            price=price,
+            tedad=tedad,
+            min_threshold=min_threshold,
+            subject=subject
+        )
+        db.add(kala)
+        db.commit()
+        return templates.TemplateResponse("sabt2.html", {"request": request , "name":name ,"price":price ,"tedad": tedad})
+    else :
+        return HTMLResponse("sku تکراری است " , status_code=401)
+
+@router2.post("/delate/sub" , response_class=HTMLResponse)
+def sub(
+    request: Request,
+    sku: int = Form(...),
+    db: Session = Depends(get_db1)
+):
+    kala = db.query(commodity).filter(commodity.sku == sku).first()
+    if kala is not None:
+        name = db.query(commodity).filter(commodity.sku == sku).first().name
+        db.query(commodity).filter(commodity.sku == sku).delete()
+        db.commit()
+        return templates.TemplateResponse("sabt3.html", {"request": request , "name":name} )
+    else:
+        return HTMLResponse("یافت نشد" , status_code=401)
+    
+
+
+#خرید با نقطه خرید
+@router2.get("/min_threshold")
+def show_min_threshold(request: Request, db: Session = Depends(get_db1)):
+    kalas = db.query(commodity).filter(commodity.min_threshold == commodity.tedad).all()
+    return templates.TemplateResponse("min_threshold.html", {"request": request, "kalas": kalas})
+
+
+#خرید فرمی
+@router2.post("/buy/sub" , response_class=HTMLResponse)
+def buy(
+    request: Request,
+    sku: int = Form(...),
+    tedad: int = Form(...),
+    db: Session = Depends(get_db1)
+):
+    kala = db.query(commodity).filter(commodity.sku == sku).first()
+    
+    if kala is not None:
+        name = kala.name
+        kala . tedad = kala.tedad + tedad
+        db.commit()
+        return templates.TemplateResponse("sabt4.html", {"request": request , "name" : name} )
+    else:
+        return HTMLResponse("یافت نشد" , status_code=401)
+    
+#لیست
+@router2.get("/home/admin/commodity", response_class=HTMLResponse)
+def list(request: Request , db: Session = Depends(get_db1)):
+    kalas = db.query(commodity).all()
+    return templates.TemplateResponse("list1.html", {"request": request, "kalas": kalas})

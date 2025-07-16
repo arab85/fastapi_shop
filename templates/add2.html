@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>sabt</title>
+</head>
+<body>
+    <h2>ثبت تامین کننده </h2>
+    <form action="/add2/sub" method="post">
+        <label>نام :</label><br>
+        <input type="text" name="name" required><br>
+
+        <label>point :</label><br>
+        <input type="range" min="1" max="10" name="point" id="pointRange" required>
+        <span id="pointValue">5</span> <!-- اینجا مقدار اولیه اسلایدر رو میذاریم --> 
+        <br>
+
+        <label>tel :</label><br>
+        <input type="number" name="tel" required><br>
+
+        <label>time :</label><br>
+        <input type="number" name="time" step="1" required><br>
+
+        <label> email :</label><br>
+        <input type="email" name="email" required><br><br>
+
+        <label>دسته :</label><br>
+        <input type="text" name="subject" required><br>
+
+        <button type="submit">ثبت </button>
+    </form>
+
+    <button>
+        <a href="/home/admin/seler">بازگشت</a>
+    </button>
+
+    <script>
+      const rangeInput = document.getElementById('pointRange');
+      const rangeValue = document.getElementById('pointValue');
+
+      // مقدار اولیه رو میذاریم برابر مقدار پیش‌فرض اسلایدر
+      rangeValue.textContent = rangeInput.value;
+
+      // وقتی کاربر اسلایدر رو تغییر داد، مقدارش رو نمایش بده
+      rangeInput.addEventListener('input', () => {
+        rangeValue.textContent = rangeInput.value;
+      });
+    </script>
+</body>
+</html>
