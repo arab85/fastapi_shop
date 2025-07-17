@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <title>فرم خرید</title>
+  <style>
+    #name {
+      display: none; 
+      margin-top: 20px;
+    }
+    #min_threshold {
+      display: none; 
+      margin-top: 20px;
+    }
+    #price {
+      display: none; 
+      margin-top: 20px;
+    }
+    #subject {
+      display: none; 
+      margin-top: 20px;
+    }
+    #sku {
+      display: none; 
+      margin-top: 20px;
+    }
+    #from {
+      display: none; 
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+    <div>
+        <input id="name0" type="checkbox"/>
+        <label for="name0">اسم </label>
+      </div>        
+      <div>
+        <input id="subject0" type="checkbox" />
+        <label for="subject0">موضوع</label>
+      </div>
+      <div>
+        <input id="sku0" type="checkbox"/>
+        <label for="sku0">sku</label>
+      </div>
+      <div>
+        <input id="min_threshold0" type="checkbox" />
+        <label for="min_threshold0">min_threshold</label>
+      </div>
+      <div>
+        <input id="price0" type="checkbox" />
+        <label for="price0">قیمت</label>
+      </div>
+
+        
+    <button type="button" onclick="checkbuy()">ارسال</button>
+
+      
+
+    <form id="from" action="/edit/sub2" method="post">
+        <label for = "name">نام :</label><br>
+        <input id="name" type="text" name="name" ><br>
+
+
+    <label for = " sku">sku :</label><br>
+    <input type="number" id = "sku" name="sku" ><br>
+
+
+    <label for="price">price :</label><br>
+    <input id = "price" type="number" name="price" step="1" ><br>
+
+
+    <label for = "min_threshold"> min_threshold :</label><br>
+    <input id="min_threshold" type="number" name="min_threshold" ><br><br>
+
+
+    <label for = "subject">دسته :</label><br>
+    <input type="text" id="subject" name="subject" ><br>
+
+    <label>اسم اولیه</label>
+    <input type="text" name="namea" >
+
+    <button type="submit">ثبت </button>
+</form>
+
+  <button>
+    <a href="/home/admin/manage">بازگشت</a>
+</button>
+
+
+  <script>
+    function checkbuy() {
+    let isname = document.getElementById('name0').checked;
+    let ismin_threshold = document.getElementById('min_threshold0').checked;
+    let issubject = document.getElementById('subject0').checked;
+    let issku = document.getElementById('sku0').checked;
+    let isprice = document.getElementById('price0').checked;
+    const name = document.getElementById('name');
+    const min_threshold = document.getElementById('min_threshold');
+    const subject = document.getElementById('subject');
+    const price = document.getElementById('price');
+    const sku = document.getElementById('sku');
+
+    document.getElementById('from').style.display="block";
+
+      if (isname) {
+        name.style.display = "block"; 
+      }
+      else{
+        name.style.display = "none"; 
+      } 
+      if (ismin_threshold) {
+        min_threshold.style.display = "block"; 
+      }
+      else{
+        min_threshold.style.display = "none"; 
+      } 
+      if (isprice) {
+        price.style.display = "block"; 
+      }
+      else{
+        price.style.display = "none"; 
+      } 
+      if (issubject) {
+        subject.style.display = "block"; 
+      }
+      else{
+        subject.style.display = "none"; 
+      } 
+      if (issku) {
+        sku.style.display = "block"; 
+      }
+      else{
+        sku.style.display = "none"; 
+      } 
+      
+    }
+  </script>
+
+</body>
+</html>

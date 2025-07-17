@@ -93,12 +93,12 @@ def sub3(
 @router3.post("/edit/sub", response_class=HTMLResponse)
 def edit(
     request: Request,
-    name: str = Form(None),
+    name: str = Form(""),
     point: int = Form(0),
     tel : int = Form(0),
     time: int = Form(0),
-    email: str = Form(None),
-    subject: str = Form(None),
+    email: str = Form(""),
+    subject: str = Form(""),
     namea: str = Form(...),
     db: Session = Depends(get_db3)
 ):
@@ -108,21 +108,21 @@ def edit(
         return HTMLResponse(e.detail, status_code=e.status_code)
     check = db.query(seller).filter(seller.name == namea).first()
     if check:
-        if name is not None:
+        if name != "":
             check.name=name
-        if tel is not None:
+        if tel !=0:
             check.tel=tel
-        if email is not None:
+        if email !="":
             check.email=email
-        if point is not None:
+        if point != 0:
             check.point=point
-        if subject is not None:
+        if subject !="":
             check.subject=subject
-        if time is not None:
+        if time !=0:
             check.time=time
         
 
         db.commit()
-        return templates.TemplateResponse("sabt7.html", {"request": request , "name":name })
+        return templates.TemplateResponse("sabt7.html", {"request": request , "name":namea })
     else :
         return HTMLResponse("اسم  نیست " , status_code=401)
