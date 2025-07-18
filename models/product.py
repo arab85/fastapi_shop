@@ -22,6 +22,7 @@ class users(Base2):
     lname = Column(String, index=True)
     kname = Column(String, index=True , unique=True )
     email = Column(String, index=True , unique=True )
+    kifp = Column(Integer)
     password = Column(String)
 
 #تامین کننده

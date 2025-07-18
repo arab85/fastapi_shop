@@ -50,6 +50,7 @@ def register(
 
     hashed = hash_password(password)
     new_user = users_model(
+        kifp = 0,
         fname=fname,
         lname=lname,
         kname=kname,
@@ -61,22 +62,4 @@ def register(
     token = create_token({"sub": kname, "nam": fname, "nam2": lname})
     return templates.TemplateResponse("sabt.html", {"request": request, "username": fname, "username2": lname, "token": token})
 
-#ورود
-@router.post("/vorod",response_class=HTMLResponse)
-def vorod(request: Request,
-          kname: str = Form(...),
-          password: str = Form(...),
-          db: Session = Depends(get_db2)):
-    user = db.query(users_model).filter(users_model.kname == kname).first()
-    if user:
-        if verify_password(password, user.password):
-            token = create_token({"sub": kname})
-            return templates.TemplateResponse("vorod.html", {"request": request, "f": kname, "token": token})
-        else:
-            return HTMLResponse("رمز نادرست!", status_code=401)
-    else:
-        return HTMLResponse("کاربر یافت نشد!", status_code=401)
 
-
-            
-            

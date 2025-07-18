@@ -22,6 +22,7 @@ class usersBase(BaseModel):
     lname: str = Field(min_length=1)
     kname: str = Field(min_length=1)
     email: str = Field(min_length=1)
+    kifp:int 
     password: str = Field(min_length=8)
 
 class users(usersBase):

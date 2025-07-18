@@ -17,6 +17,8 @@ templates = Jinja2Templates(directory="templates")
 from api.user import router as product_router
 from api.manage import router2 as product2_router
 from api.seller import router3 as product3_router
+from api.home_user import router4 as product4_router
+app.include_router(product4_router)
 app.include_router(product3_router)
 app.include_router(product_router)
 app.include_router(product2_router)
