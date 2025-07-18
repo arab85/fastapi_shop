@@ -42,7 +42,7 @@ class text(Base4):
 
     id = Column(Integer, primary_key=True)
     subject = Column(String, index=True)
-    text = Column(String, index=True)
+    texts = Column(String, index=True)
 
 #سفارش خرید
 class gets(Base5):

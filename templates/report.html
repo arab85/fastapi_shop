@@ -5,6 +5,16 @@
   </head>
   <body>
     <H1>گزارش</H1>
+    <form action="/report/sub" method="post">
+      <label>نام:</label><br>
+      <input type="text" name="subject" required><br>
+
+      <textarea name="tex" rows="10" cols="50" placeholder="متن HTML خود را اینجا وارد کنید..."></textarea><br/>
+      <button type="submit">ثبت</button>
+  </form>
+    <button>
+      <a href="/home/admin/report/list">لیتت گزارش</a>
+  </button>
     <button>
         <a href="/home/admin">بازگشت</a>
     </button>

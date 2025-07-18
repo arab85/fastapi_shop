@@ -3,10 +3,13 @@ from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from db.database import SessionLocal1,SessionLocal2,SessionLocal3,SessionLocal4,SessionLocal5, engine1 , engine2,engine3,engine4,engine5
 from models import product
+from models.product import text
+from db.database import Base4
 from crub.product import create_commodity,search_commodity,delete_commodity,create_seler,search_seler,create_text,search_text,delete_text,create_se,search_se,delete_se
-from schemas.product import commodity,seller,text,gets,users
+from schemas.product import commodity,seller,gets,users
 from sqlalchemy.orm import Session
 
+Base4.metadata.create_all(bind=engine4)
 
 app = FastAPI()
 
@@ -24,6 +27,13 @@ def get_db1():
         yield db
     finally:
         db.close()
+def get_db4():
+    db = SessionLocal4()
+    try:
+        yield db
+    finally:
+        db.close()
+
 
 
 
@@ -79,6 +89,21 @@ def Manage(request: Request):
 @app.get("/home/admin/report", response_class=HTMLResponse)
 def report(request: Request):
     return templates.TemplateResponse("report.html", {"request": request})
+@app.post("/report/sub", response_class=HTMLResponse)
+def sub2(request: Request,
+    subject: str = Form(...),
+    tex: str = Form(...),
+    db : Session = Depends(get_db4)
+):
+    matn = text(subject=subject , texts = tex)
+    db.add(matn)
+    db.commit()
+    return templates.TemplateResponse("sabt9.html", {"request": request , "subject":subject})
+@app.get("/home/admin/report/list", response_class=HTMLResponse)
+def list(request: Request , db : Session=Depends(get_db4)):
+    matns = db.query(text).all()
+    return templates.TemplateResponse("list3.html", {"request": request, "matns": matns})
+
 
 
 

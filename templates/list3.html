@@ -1,0 +1,23 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>لیست گزارشات</title>
+</head>
+<body>
+    <h1>محصولات</h1>
+    <ul>
+        {% for p in matns %}
+            <ol type="1">
+                <strong>{{ p.subject }}</strong><br> - 
+                {{ p.texts }} -
+            </li>
+        {% else %}
+            <li>گزارشی موجود نیست.</li>
+        {% endfor %}
+    </ul><br><br>
+        <a href="/home/admin/report">بازگشت</a>
+    </button>
+</body>
+</html>

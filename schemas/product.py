@@ -47,7 +47,7 @@ class seller(sellerBase):
 #کلاس گزارش ها
 class textBase(BaseModel):
     subject: str = Field(min_length=1)
-    text: str = Field(min_length=1)
+    texts: str = Field(min_length=1)
 
 class text(textBase):
     id:int
