@@ -12,7 +12,7 @@ from auth.auth import hash_password, verify_password, create_token ,validate_ema
 Base5.metadata.create_all(bind=engine5)
 Base2.metadata.create_all(bind=engine2)
 
- 
+x = None
 
 router4 = APIRouter()
 templates = Jinja2Templates(directory="templates")
@@ -40,9 +40,13 @@ def buy(request: Request):
     return templates.TemplateResponse("buy.html", {"request": request})
 #سفارش 
 @router4.get("/home/user/kif", response_class=HTMLResponse)
-def kif(request: Request):
+def kif(request: Request,db: Session = Depends(get_db2)):
     global x
-    return templates.TemplateResponse("kif.html", {"request": request  , "name" : x})
+    if x is not None:
+        name = db.query(users).filter(users.kname == x).first()
+        return templates.TemplateResponse("kif.html", {"request": request  , "name" : name.kname , "pol" : name.kifp})
+    else:
+        return HTMLResponse("  دوباره ورود کنید /nکاربر یافت نشد!", status_code=401)
 
 @router4.post("/vorod",response_class=HTMLResponse)
 def vorod(request: Request,
@@ -58,5 +62,19 @@ def vorod(request: Request,
             return templates.TemplateResponse("vorod.html", {"request": request, "f": kname, "token": token})
         else:
             return HTMLResponse("رمز نادرست!", status_code=401)
+    else:
+        return HTMLResponse("کاربر یافت نشد!", status_code=401)
+
+@router4.post("/sharg",response_class=HTMLResponse)
+def sha(request: Request,
+          kname: str = Form(...),
+          toman: int = Form(...),
+          db: Session = Depends(get_db2)):
+    user = db.query(users).filter(users.kname == kname).first()
+    if user:
+        user.kifp+=toman
+        db.commit()
+        return HTMLResponse("کاربر یافت شد!", status_code=200)
+
     else:
         return HTMLResponse("کاربر یافت نشد!", status_code=401)

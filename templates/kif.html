@@ -2,13 +2,72 @@
 <html>
   <head>
     <title>page 8</title>
+    <style>
+      #m {
+      display: none; 
+      margin-top: 20px;
+    }
+    #a {
+      display: none; 
+      margin-top: 20px;
+    }
+    </style>
   </head>
   <body>
-    <H1>موجودی حساب </H1>
-    <p>سلام {{name}}موجودی کیف پول شما صفر است</p>
-    <button>
-        
+    
+    
+    <div>
+      <input id="a0" type="radio" name="a" />
+      <label for="a0"> افزایش موجودی</label>
+    </div>        
+    <div>
+      <input id="m0" type="radio" name="a"/>
+      <label for="m0">میزان موجودی</label>
+    </div>
+      
+  <button type="button" onclick="checkbuy()">ارسال</button>
+  
+  <div id="m">
+    <p>{{name}} موجودی شما <br>
+{{pol}} تومان:
+    </p>
+  </div>
+
+  <form id="a" action="/sharg" method="post">
+    <label for="tedad">پول :</label>
+    <input type="number" id="tedad" name="toman" />
+    <label for="selr ">نام کاربری  :</label>
+    <input type="text" id="selr" name="kname" />
+    <br /><br />
+    <button type="submit">ارسال فرم</button>
+  </form>
+    
+
+    <button>    
         <a href="/home/user">بازگشت</a>
     </button>
+
+    <script>
+    function checkbuy() {
+    let ismin = document.getElementById('m0').checked;
+      const auto = document.getElementById('m');
+      let ischange = document.getElementById('a0').checked;
+      const change = document.getElementById('a');
+
+      if (ismin) {
+        auto.style.display = "block"; 
+      }
+      else{
+        auto.style.display = "none"; 
+      } 
+      if (ischange) {
+        change.style.display = "block"; 
+      }
+      else{
+        change.style.display="none"
+      }
+      
+    }
+  </script>
   </body>
 </html>
