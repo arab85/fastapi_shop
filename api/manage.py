@@ -2,21 +2,28 @@ from fastapi import APIRouter, Request, Form, Depends,HTTPException
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
-from db.database import SessionLocal1, engine1
+from db.database import SessionLocal1, engine1 ,SessionLocal5,engine5
 from schemas.product import commodityBase
-from models.product import commodity 
-from db.database import Base1
+from models.product import  commodity , gets
+
+from db.database import Base1 ,Base5
 from auth.auth import validate_number
 
 
 Base1.metadata.create_all(bind=engine1)
-
+Base5.metadata.create_all(bind=engine5)
 
 router2 = APIRouter()
 templates = Jinja2Templates(directory="templates")
 
 def get_db1():
     db = SessionLocal1()
+    try:
+        yield db
+    finally:
+        db.close()
+def get_db5():
+    db = SessionLocal5()
     try:
         yield db
     finally:
@@ -97,22 +104,60 @@ def show_min_threshold(request: Request, db: Session = Depends(get_db1)):
     kalas = db.query(commodity).filter(commodity.min_threshold == commodity.tedad).all()
     return templates.TemplateResponse("min_threshold.html", {"request": request, "kalas": kalas})
 
+#تغییر وضعیت
+@router2.get("/change")
+def change(request: Request, db: Session = Depends(get_db5)):
+    kalas = db.query(gets).all()
+    return templates.TemplateResponse("change.html", {"request": request, "kalas": kalas})
 
-#خرید فرمی
+@router2.get("/confir")
+def change2(request: Request, db: Session = Depends(get_db5),db2: Session = Depends(get_db1)):
+    kala = db.query(gets).filter(gets.vaziat==4).first()
+    db2.query(commodity).filter(commodity.name==kala.name).first().tedad += kala.tedad
+    db.query(gets).filter(gets.vaziat==4).delete()
+    db.commit()
+    db2.commit()
+    return templates.TemplateResponse("confir.html", {"request": request, "kalas": kala.name})
+
+@router2.post("/change/sub" , response_class=HTMLResponse)
+def cha(
+    request: Request,
+    id: int = Form(...),
+    vaz: int = Form(...),
+    db: Session = Depends(get_db5)
+):
+    kala = db.query(gets).filter(gets.id == id).first()
+    
+    if kala is not None:
+        kala.vaziat=vaz
+        db.commit()
+        return templates.TemplateResponse("sabt10.html", {"request": request , "name" : kala.name, "vaz":vaz} )
+    else:
+        return HTMLResponse("یافت نشد" , status_code=401)
+
+#خرید سفارش
 @router2.post("/buy/sub" , response_class=HTMLResponse)
 def buy(
     request: Request,
     sku: int = Form(...),
     tedad: int = Form(...),
-    db: Session = Depends(get_db1)
+    selr: str = Form(...),
+    db: Session = Depends(get_db5),
+    db2: Session = Depends(get_db1)
 ):
-    kala = db.query(commodity).filter(commodity.sku == sku).first()
+    kala = db2.query(commodity).filter(commodity.sku == sku).first()
     
     if kala is not None:
-        name = kala.name
-        kala . tedad = kala.tedad + tedad
+        kal = gets (
+            name = kala.name,
+            tedad = tedad,
+            subject = kala.subject,
+            name_seller = selr,
+            vaziat = 1
+        )
+        db.add(kal)
         db.commit()
-        return templates.TemplateResponse("sabt4.html", {"request": request , "name" : name} )
+        return templates.TemplateResponse("sabt4.html", {"request": request , "name" : kala.name} )
     else:
         return HTMLResponse("یافت نشد" , status_code=401)
     

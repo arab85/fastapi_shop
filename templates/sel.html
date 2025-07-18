@@ -12,6 +12,10 @@
       display: none; 
       margin-top: 20px;
     }
+    #change {
+      display: none; 
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
@@ -24,8 +28,13 @@
         <input id="auto0" type="radio" name="a"/>
         <label for="auto0">خودکار</label>
       </div>
+      <div>
+        <input id="change0" type="radio" name="a"/>
+        <label for="change0">تغییر وضعیت</label>
+      </div>
         
     <button type="button" onclick="checkbuy()">ارسال</button>
+    
 
       
 
@@ -35,11 +44,19 @@
     </button>
   </div>
 
+  <div id="change">
+    <button>
+        <a href="/change">تغییر وضعیت  </a>
+    </button>
+  </div>
+
   <form id="auto" action="/buy/sub" method="post">
     <label for="sku">sku :</label>
     <input type="number" id="sku" name="sku" />
     <label for="tedad">تعداد :</label>
     <input type="number" id="tedad" name="tedad" />
+    <label for="selr ">نام تامین کننده :</label>
+    <input type="text" id="selr" name="selr" />
     <br /><br />
     <button type="submit">ارسال فرم</button>
   </form>
@@ -52,6 +69,8 @@
     let isauto = document.getElementById('auto0').checked;
       const min = document.getElementById('min');
       const auto = document.getElementById('auto');
+      let ischange = document.getElementById('change0').checked;
+      const change = document.getElementById('change');
 
       if (ismin) {
         min.style.display = "block"; 
@@ -64,6 +83,12 @@
       }
       else{
         auto.style.display = "none"; 
+      } 
+      if (ischange) {
+        change.style.display = "block"; 
+      }
+      else{
+        change.style.display = "none"; 
       } 
     }
   </script>

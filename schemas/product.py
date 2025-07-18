@@ -62,6 +62,8 @@ class getsBase(BaseModel):
     name_seller : str = Field(min_length=1)
     vaziat: int = Field(gt=0, lt=4)
 
+
+
 class gets(getsBase):
     id:int
     class Config:
