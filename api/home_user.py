@@ -72,8 +72,27 @@ def list4(request: Request , db: Session = Depends(get_db1)):
     return templates.TemplateResponse("list5.html", {"request": request , "k":kalas})
 #سفارش 
 @router4.get("/home/user/buy", response_class=HTMLResponse)
-def buy(request: Request):
-    return templates.TemplateResponse("buy.html", {"request": request , "a":a})
+def buy(request: Request , db : Session=Depends(get_db1) , db2 : Session = Depends(get_db2)):
+    q = 0
+    global a,x
+    user = db2.query(users).filter(users.kname == x).first()
+    if user is None:
+        return HTMLResponse("وارد شوید", status_code=401)
+    else:
+        b = user.kifp
+
+    for i in range (len(a)):
+        q +=db.query(commodity).filter(commodity.id==a[i]).first().price
+        c = a[i]
+        a[i] = db.query(commodity).filter(commodity.id==a[i]).first().name
+    if q<= b and db.query(commodity).filter(commodity.id==c).first().tedad>0 :
+        b-=q
+        db.query(commodity).filter(commodity.id==c).first().tedad -= 1   
+        db.commit()
+        db2.commit()
+        return templates.TemplateResponse("buy.html", {"request": request , "a":a, "b":b})
+    else:
+        return HTMLResponse("موجودی کم ", status_code=401)
 #سفارش 
 @router4.get("/home/user/kif", response_class=HTMLResponse)
 def kif(request: Request,db: Session = Depends(get_db2)):
