@@ -2,23 +2,24 @@ from fastapi import APIRouter, Request, Form, Depends,HTTPException
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
-from db.database import SessionLocal5, engine5 , SessionLocal2 , engine2
+from db.database import SessionLocal1, engine1 , SessionLocal2 , engine2
 from schemas.product import usersBase
-from models.product import  users 
-from db.database import Base5,Base2
+from models.product import  users , commodity
+from db.database import Base1,Base2
 from auth.auth import validate_number
 from auth.auth import hash_password, verify_password, create_token ,validate_email,validate_password
 
-Base5.metadata.create_all(bind=engine5)
+Base1.metadata.create_all(bind=engine1)
 Base2.metadata.create_all(bind=engine2)
 
 x = None
+a = []
 
 router4 = APIRouter()
 templates = Jinja2Templates(directory="templates")
 
-def get_db5():
-    db = SessionLocal5()
+def get_db1():
+    db = SessionLocal1()
     try:
         yield db
     finally:
@@ -30,14 +31,49 @@ def get_db2():
     finally:
         db.close()
 
+
 #لیست 
 @router4.get("/home/user/list", response_class=HTMLResponse)
-def list(request: Request):
+def list1(request: Request):
     return templates.TemplateResponse("list4.html", {"request": request})
+#لیست 
+@router4.get("/home/user/list1", response_class=HTMLResponse)
+def list2(request: Request , db: Session = Depends(get_db1)):
+    kalas = db.query(commodity).order_by(commodity.price.asc()).all()
+    return templates.TemplateResponse("list5.html", {"request": request , "k":kalas})
+@router4.post("/buy/sab2", response_class=HTMLResponse)
+async def b(request: Request):
+    form_data = await request.form()
+    global a
+    a = form_data.getlist("selected")
+    return templates.TemplateResponse("sabt11.html", {"request": request})
+
+#لیست 
+@router4.get("/home/user/list2", response_class=HTMLResponse)
+def list3(request: Request, db: Session = Depends(get_db1), subject: str = None):
+    subjects = db.query(commodity.subject).distinct().all()
+    subjects = [s[0] for s in subjects]
+
+    kalas = []
+    if subject:
+        kalas = db.query(commodity).filter(commodity.subject == subject).order_by(commodity.name.asc()).all()
+    
+    return templates.TemplateResponse("list6.html", {
+        "request": request,
+        "subjects": subjects,
+        "selected_subject": subject,
+        "k": kalas
+    })
+
+#لیست 
+@router4.get("/home/user/list3", response_class=HTMLResponse)
+def list4(request: Request , db: Session = Depends(get_db1)):
+    kalas = db.query(commodity).order_by(commodity.name.asc()).all()
+    return templates.TemplateResponse("list5.html", {"request": request , "k":kalas})
 #سفارش 
 @router4.get("/home/user/buy", response_class=HTMLResponse)
 def buy(request: Request):
-    return templates.TemplateResponse("buy.html", {"request": request})
+    return templates.TemplateResponse("buy.html", {"request": request , "a":a})
 #سفارش 
 @router4.get("/home/user/kif", response_class=HTMLResponse)
 def kif(request: Request,db: Session = Depends(get_db2)):

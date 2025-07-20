@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>لیست محصولات</title>
+</head>
+<body>
+    <h1>انتخاب دسته‌بندی</h1>
+    <form method="get" action="/home/user/list2">
+        <label for="subject">موضوع:</label>
+        <select name="subject" id="subject">
+            <option value="">-- انتخاب کنید --</option>
+            {% for s in subjects %}
+                <option value="{{ s }}" {% if s == selected_subject %}selected{% endif %}>{{ s }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">نمایش</button>
+    </form>
+
+    {% if k %}
+        <h2>لیست کالاها برای: {{ selected_subject }}</h2>
+        <form action="/buy/sab2" method="post">
+            <ul>
+                {% for p in k %}
+                    <li>
+                        <strong>{{ p.name }}</strong> - 
+                        {{ p.subject }} -
+                        {{ p.price }} تومان - 
+                        موجودی: {{ p.tedad }}
+                        <div>
+                            <input type="checkbox" name="selected" value="{{ p.id }}" id="p{{ p.id }}" />
+                            <label for="p{{ p.id }}">انتخاب</label>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+            <button type="submit">ثبت</button>
+        </form>
+    {% elif selected_subject %}
+        <p>محصولی در این موضوع موجود نیست.</p>
+    {% endif %}
+
+    <br><br>
+    <a href="/home/user/list">بازگشت</a>
+</body>
+</html>

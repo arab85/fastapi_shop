@@ -1,0 +1,35 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>لیست محصولات</title>
+</head>
+<body>
+    <h1>محصولات</h1>
+      <form action="/buy/sab2" method="post">
+        <ul>
+            {% for p in k %}
+                <li>
+                    <strong>{{ p.name }}</strong> - 
+                    {{ p.subject }} -
+                    {{ p.price }} تومان - 
+                    موجودی: {{ p.tedad }}
+                    <div>
+                        <input type="checkbox" name="selected" value="{{ p.id }}" id="p{{ p.id }}" />
+                        <label for="p{{ p.id }}">انتخاب</label>
+                    </div>
+                </li>
+            {% else %}
+                <li>محصولی موجود نیست.</li>
+            {% endfor %}
+        </ul>
+        <button type="submit">ثبت</button>
+    </form>
+    
+<br><br>
+    
+        <a href="/home/user/list">بازگشت</a>
+    </button>
+</body>
+</html>
