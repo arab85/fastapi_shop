@@ -1,22 +1,83 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>page 8</title>
-  </head>
-  <body>
-    <H1>لیست محصولات</H1>
-    <button>
-      <a href="/home/user/list1">فیلتر قیمت</a>
-  </button>
-  <button>
-    <a href="/home/user/list2">فیلتر موضوع</a>
-    </button>
-    <button>
-      <a href="/home/user/list3">فیلتر الفبا</a>
-    </button>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <title>لیست محصولات</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #f0f4f8;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      direction: rtl;
+      color: #222;
+      text-align: center;
+    }
 
-    <button>
-      <a href="/home/user">بازگشت</a>
-  </button>
-  </body>
+    h1 {
+      font-size: 60px;
+      margin: 0;
+      padding: 30px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: white;
+      color: #222;
+      z-index: 10;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    #buttons-container {
+      background-color: #4b0082;
+      height: 400px;
+      margin: 300px auto 0 auto;
+      border-radius: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      max-width: 800px;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: white;
+      color: #4b0082;
+      padding: 15px 40px;
+      cursor: pointer;
+      border: 2px solid #4b0082;
+      border-radius: 10px;
+      font-size: 22px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      min-width: 160px;
+    }
+
+    button:hover {
+      background-color: black;
+      color: white;
+    }
+
+    button a {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    button:hover a {
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>لیست محصولات</h1>
+
+  <div id="buttons-container">
+    <button><a href="/home/user/list1">فیلتر قیمت</a></button>
+    <button><a href="/home/user/list2">فیلتر موضوع</a></button>
+    <button><a href="/home/user/list3">فیلتر الفبا</a></button>
+    <button><a href="/home/user">بازگشت</a></button>
+  </div>
+</body>
 </html>

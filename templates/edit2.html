@@ -4,137 +4,233 @@
   <meta charset="UTF-8" />
   <title>فرم خرید</title>
   <style>
-    #name {
-      display: none; 
-      margin-top: 20px;
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      direction: rtl;
+      background-color: #f0f4f8;
+      padding: 40px 20px;
+      color: #222;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
     }
-    #min_threshold {
-      display: none; 
-      margin-top: 20px;
+
+    .container {
+      display: flex;
+      gap: 40px;
+      max-width: 900px;
+      width: 100%;
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      padding: 30px 40px;
     }
-    #price {
-      display: none; 
-      margin-top: 20px;
+
+    /* سمت چپ: چک‌باکس‌ها */
+    .checkbox-group {
+      flex: 1;
+      background: #fafafa;
+      padding: 25px 30px;
+      border-radius: 15px;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
     }
-    #subject {
-      display: none; 
-      margin-top: 20px;
+
+    .checkbox-group h2 {
+      margin-top: 0;
+      color: #4b0082;
+      font-weight: bold;
+      font-size: 22px;
+      margin-bottom: 20px;
+      text-align: center;
     }
-    #sku {
-      display: none; 
-      margin-top: 20px;
+
+    .checkbox-group div {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
-    #from {
-      display: none; 
+
+    .checkbox-group label {
+      font-weight: normal;
+      font-size: 17px;
+      color: #333;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    /* سمت راست: فرم */
+    form#from {
+      flex: 2;
+      display: none;
+      flex-direction: column;
+      padding: 25px 30px;
+      border-radius: 15px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      max-width: 100%;
+    }
+
+    form#from label {
+      display: block;
       margin-top: 20px;
+      font-weight: bold;
+      color: #4b0082;
+      font-size: 18px;
+    }
+
+    form#from input[type="text"],
+    form#from input[type="number"] {
+      width: 100%;
+      padding: 10px 15px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 2px solid #4b0082;
+      box-sizing: border-box;
+      transition: border-color 0.3s ease;
+      margin-top: 6px;
+    }
+
+    form#from input[type="text"]:focus,
+    form#from input[type="number"]:focus {
+      border-color: #000;
+      outline: none;
+    }
+
+    button[type="button"],
+    button[type="submit"] {
+      background-color: #4b0082;
+      border: none;
+      color: white;
+      font-size: 18px;
+      padding: 12px 30px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 25px;
+      align-self: flex-start;
+    }
+
+    button[type="button"]:hover,
+    button[type="submit"]:hover {
+      background-color: #000;
+    }
+
+    /* دکمه بازگشت */
+    .back-button {
+      display: inline-block;
+      margin-top: 30px;
+      background-color: white;
+      border: 2px solid #4b0082;
+      padding: 12px 30px;
+      border-radius: 12px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: #4b0082;
+      text-decoration: none;
+      font-weight: bold;
+      text-align: center;
+      align-self: flex-start;
+    }
+    .back-button:hover {
+      background-color: #4b0082;
+      color: white;
     }
   </style>
 </head>
 <body>
 
-    <div>
+  <div class="container">
+    <div class="checkbox-group">
+      <h2>فیلدهای مورد نظر خود را انتخاب کنید</h2>
+
+      <div>
         <input id="name0" type="checkbox"/>
-        <label for="name0">اسم </label>
-      </div>        
+        <label for="name0">اسم</label>
+      </div>
+
       <div>
         <input id="subject0" type="checkbox" />
         <label for="subject0">موضوع</label>
       </div>
+
       <div>
         <input id="sku0" type="checkbox"/>
-        <label for="sku0">sku</label>
+        <label for="sku0">SKU</label>
       </div>
+
       <div>
         <input id="min_threshold0" type="checkbox" />
-        <label for="min_threshold0">min_threshold</label>
+        <label for="min_threshold0">حداقل آستانه</label>
       </div>
+
       <div>
         <input id="price0" type="checkbox" />
         <label for="price0">قیمت</label>
       </div>
 
-        
-    <button type="button" onclick="checkbuy()">ارسال</button>
+      <button type="button" onclick="checkbuy()">ارسال</button>
+    </div>
 
-      
+    <form id="from" action="/edit/sub2" method="post" dir="rtl">
+      <label for="name" style="display:none;">نام :</label>
+      <input id="name" type="text" name="name" style="display:none;" >
 
-    <form id="from" action="/edit/sub2" method="post">
-        <label for = "name">نام :</label><br>
-        <input id="name" type="text" name="name" ><br>
+      <label for="sku" style="display:none;">SKU :</label>
+      <input type="number" id="sku" name="sku" style="display:none;" >
 
+      <label for="price" style="display:none;">قیمت :</label>
+      <input id="price" type="number" name="price" step="1" style="display:none;" >
 
-    <label for = " sku">sku :</label><br>
-    <input type="number" id = "sku" name="sku" ><br>
+      <label for="min_threshold" style="display:none;">حداقل آستانه :</label>
+      <input id="min_threshold" type="number" name="min_threshold" style="display:none;" >
 
+      <label for="subject" style="display:none;">دسته :</label>
+      <input type="text" id="subject" name="subject" style="display:none;" >
 
-    <label for="price">price :</label><br>
-    <input id = "price" type="number" name="price" step="1" ><br>
+      <label>اسم اولیه</label>
+      <input type="text" name="namea" >
 
+      <button type="submit">ثبت</button>
+    </form>
+  </div>
 
-    <label for = "min_threshold"> min_threshold :</label><br>
-    <input id="min_threshold" type="number" name="min_threshold" ><br><br>
-
-
-    <label for = "subject">دسته :</label><br>
-    <input type="text" id="subject" name="subject" ><br>
-
-    <label>اسم اولیه</label>
-    <input type="text" name="namea" >
-
-    <button type="submit">ثبت </button>
-</form>
-
-  <button>
-    <a href="/home/admin/manage">بازگشت</a>
-</button>
-
+  <a href="/home/admin/manage" class="back-button">بازگشت</a>
 
   <script>
     function checkbuy() {
-    let isname = document.getElementById('name0').checked;
-    let ismin_threshold = document.getElementById('min_threshold0').checked;
-    let issubject = document.getElementById('subject0').checked;
-    let issku = document.getElementById('sku0').checked;
-    let isprice = document.getElementById('price0').checked;
-    const name = document.getElementById('name');
-    const min_threshold = document.getElementById('min_threshold');
-    const subject = document.getElementById('subject');
-    const price = document.getElementById('price');
-    const sku = document.getElementById('sku');
+      const fromForm = document.getElementById('from');
+      const fields = [
+        { checkboxId: 'name0', inputId: 'name' },
+        { checkboxId: 'subject0', inputId: 'subject' },
+        { checkboxId: 'sku0', inputId: 'sku' },
+        { checkboxId: 'min_threshold0', inputId: 'min_threshold' },
+        { checkboxId: 'price0', inputId: 'price' },
+      ];
 
-    document.getElementById('from').style.display="block";
+      // نمایش فرم
+      fromForm.style.display = 'flex';
+      fromForm.style.flexDirection = 'column';
 
-      if (isname) {
-        name.style.display = "block"; 
-      }
-      else{
-        name.style.display = "none"; 
-      } 
-      if (ismin_threshold) {
-        min_threshold.style.display = "block"; 
-      }
-      else{
-        min_threshold.style.display = "none"; 
-      } 
-      if (isprice) {
-        price.style.display = "block"; 
-      }
-      else{
-        price.style.display = "none"; 
-      } 
-      if (issubject) {
-        subject.style.display = "block"; 
-      }
-      else{
-        subject.style.display = "none"; 
-      } 
-      if (issku) {
-        sku.style.display = "block"; 
-      }
-      else{
-        sku.style.display = "none"; 
-      } 
-      
+      // برای هر فیلد، بر اساس چک‌باکس نمایش/مخفی کن
+      fields.forEach(({ checkboxId, inputId }) => {
+        const checked = document.getElementById(checkboxId).checked;
+
+        const label = fromForm.querySelector(`label[for="${inputId}"]`);
+        const input = document.getElementById(inputId);
+
+        if (checked) {
+          label.style.display = 'block';
+          input.style.display = 'block';
+        } else {
+          label.style.display = 'none';
+          input.style.display = 'none';
+        }
+      });
     }
   </script>
 

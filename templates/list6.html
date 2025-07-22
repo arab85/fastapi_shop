@@ -1,46 +1,204 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-    <meta charset="UTF-8">
-    <title>لیست محصولات</title>
+  <meta charset="UTF-8" />
+  <title>لیست محصولات</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9f9f9;
+      margin: 40px;
+      direction: rtl;
+      color: #333;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #4b0082;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      font-size: 28px;
+      margin-bottom: 25px;
+    }
+
+    form {
+      max-width: 600px;
+      margin: 0 auto 30px auto;
+      background-color: white;
+      padding: 25px 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    label {
+      font-weight: bold;
+      margin-left: 10px;
+      font-size: 16px;
+    }
+
+    select {
+      padding: 6px 10px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1.5px solid #4b0082;
+      outline: none;
+      cursor: pointer;
+      min-width: 200px;
+    }
+
+    select:focus {
+      border-color: #35006b;
+      box-shadow: 0 0 6px #35006baa;
+    }
+
+    button[type="submit"] {
+      background-color: #4b0082;
+      color: white;
+      font-weight: bold;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 15px;
+      font-size: 16px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      min-width: 120px;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #35006b;
+    }
+
+    ul {
+      max-width: 600px;
+      margin: 0 auto 30px auto;
+      list-style-type: none;
+      padding: 0;
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 25px 30px;
+    }
+
+    li {
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+    }
+
+    li:last-child {
+      border-bottom: none;
+    }
+
+    li strong {
+      color: #4b0082;
+      display: block;
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+
+    li div {
+      margin-top: 6px;
+    }
+
+    input[type="checkbox"] {
+      transform: scale(1.2);
+      margin-left: 6px;
+      cursor: pointer;
+    }
+
+    label[for^="p"] {
+      cursor: pointer;
+      font-size: 15px;
+      color: #555;
+    }
+
+    p {
+      max-width: 600px;
+      margin: 30px auto;
+      font-size: 18px;
+      text-align: center;
+      color: #888;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin: 40px auto 0 auto;
+      font-weight: bold;
+      color: #4b0082;
+      text-decoration: none;
+      border: 2px solid #4b0082;
+      padding: 12px 20px;
+      width: 140px;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .back-link:hover {
+      background-color: #4b0082;
+      color: white;
+    }
+    .matn{
+      font-family: Tahoma, sans-serif; 
+      font-size: 14px; 
+      line-height: 1.6; 
+      color: #333;
+    }
+  </style>
 </head>
 <body>
-    <h1>انتخاب دسته‌بندی</h1>
-    <form method="get" action="/home/user/list2">
-        <label for="subject">موضوع:</label>
-        <select name="subject" id="subject">
-            <option value="">-- انتخاب کنید --</option>
-            {% for s in subjects %}
-                <option value="{{ s }}" {% if s == selected_subject %}selected{% endif %}>{{ s }}</option>
-            {% endfor %}
-        </select>
-        <button type="submit">نمایش</button>
+
+  <h1>انتخاب دسته‌بندی</h1>
+
+  <form method="get" action="/home/user/list2">
+    <label for="subject">موضوع:</label>
+    <select name="subject" id="subject">
+      <option value="">-- انتخاب کنید --</option>
+      {% for s in subjects %}
+        <option value="{{ s }}" {% if s == selected_subject %}selected{% endif %}>{{ s }}</option>
+      {% endfor %}
+    </select>
+    <button type="submit">نمایش</button>
+  </form>
+
+  {% if k %}
+    <h2>لیست کالاها برای: {{ selected_subject }}</h2>
+    <form action="/buy/sab2" method="post">
+      <ul>
+        {% for p in k %}
+          <li>
+            <div class = "matn">
+                <strong style="display: block; font-size: 16px; margin-bottom: 4px;">{{ p.name }}</strong>
+                <span style="display: block; margin-bottom: 2px;">موضوع: {{ p.subject }}</span>
+                <span style="display: block; margin-bottom: 2px;">قیمت: {{ p.price }} تومان</span>
+                <span style="display: block">موجودی: {{ p.tedad }}</span>
+              </div>
+            <div>
+              <input type="checkbox" name="selected" value="{{ p.id }}" id="p{{ p.id }}" />
+              <label for="p{{ p.id }}">انتخاب</label>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+      <button type="submit">ثبت</button>
     </form>
+  {% elif selected_subject %}
+    <p>محصولی در این موضوع موجود نیست.</p>
+  {% endif %}
 
-    {% if k %}
-        <h2>لیست کالاها برای: {{ selected_subject }}</h2>
-        <form action="/buy/sab2" method="post">
-            <ul>
-                {% for p in k %}
-                    <li>
-                        <strong>{{ p.name }}</strong> - 
-                        {{ p.subject }} -
-                        {{ p.price }} تومان - 
-                        موجودی: {{ p.tedad }}
-                        <div>
-                            <input type="checkbox" name="selected" value="{{ p.id }}" id="p{{ p.id }}" />
-                            <label for="p{{ p.id }}">انتخاب</label>
-                        </div>
-                    </li>
-                {% endfor %}
-            </ul>
-            <button type="submit">ثبت</button>
-        </form>
-    {% elif selected_subject %}
-        <p>محصولی در این موضوع موجود نیست.</p>
-    {% endif %}
+  <a href="/home/user/list" class="back-link">بازگشت</a>
 
-    <br><br>
-    <a href="/home/user/list">بازگشت</a>
 </body>
 </html>

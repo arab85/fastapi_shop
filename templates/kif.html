@@ -1,73 +1,146 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>page 8</title>
-    <style>
-      #m {
-      display: none; 
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>صفحه ۸ - موجودی</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f0f4f8;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      direction: rtl;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 50px;
+      color: #4b0082;
+    }
+
+    .box {
+      background-color: #4b0082;
+      color: white;
+      margin: 150px auto;
+      padding: 40px 30px;
+      border-radius: 20px;
+      width: 80%;
+      max-width: 600px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .option {
+      margin-bottom: 20px;
+      font-size: 20px;
+    }
+
+    label {
+      margin-right: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    input[type="radio"] {
+      transform: scale(1.2);
+      margin-left: 10px;
+    }
+
+    button[type="button"], button[type="submit"] {
+      background-color: white;
+      color: #4b0082;
+      border: 2px solid white;
+      border-radius: 10px;
+      padding: 12px 25px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: all 0.3s ease;
       margin-top: 20px;
     }
-    #a {
-      display: none; 
-      margin-top: 20px;
+
+    button[type="button"]:hover,
+    button[type="submit"]:hover {
+      background-color: #000;
+      color: white;
+      border-color: #000;
     }
-    </style>
-  </head>
-  <body>
-    
-    
-    <div>
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      font-weight: bold;
+    }
+
+    #m, #a {
+      display: none;
+      margin-top: 30px;
+      background-color: white;
+      color: #333;
+      padding: 20px;
+      border-radius: 12px;
+      font-size: 18px;
+    }
+
+    form input[type="number"],
+    form input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 2px solid #4b0082;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    .back-button {
+      margin-top: 30px;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <h2>انتخاب عملیات</h2>
+
+    <div class="option">
       <input id="a0" type="radio" name="a" />
-      <label for="a0"> افزایش موجودی</label>
+      <label for="a0">افزایش موجودی</label>
     </div>        
-    <div>
+
+    <div class="option">
       <input id="m0" type="radio" name="a"/>
       <label for="m0">میزان موجودی</label>
     </div>
-      
-  <button type="button" onclick="checkbuy()">ارسال</button>
-  
-  <div id="m">
-    <p>{{name}} موجودی شما <br>
-{{pol}} تومان:
-    </p>
+
+    <button type="button" onclick="checkbuy()">ارسال</button>
+
+    <div id="m">
+      <p><strong>{{name}}</strong> عزیز<br> موجودی شما: <strong>{{pol}}</strong> تومان</p>
+    </div>
+
+    <form id="a" action="/sharg" method="post">
+      <label for="tedad">مبلغ (تومان):</label>
+      <input type="number" id="tedad" name="toman" required>
+
+      <label for="selr">نام کاربری:</label>
+      <input type="text" id="selr" name="kname" required>
+
+      <button type="submit">ارسال فرم</button>
+    </form>
+
+    <div class="back-button">
+      <button><a href="/home/user">بازگشت</a></button>
+    </div>
   </div>
 
-  <form id="a" action="/sharg" method="post">
-    <label for="tedad">پول :</label>
-    <input type="number" id="tedad" name="toman" />
-    <label for="selr ">نام کاربری  :</label>
-    <input type="text" id="selr" name="kname" />
-    <br /><br />
-    <button type="submit">ارسال فرم</button>
-  </form>
-    
-
-    <button>    
-        <a href="/home/user">بازگشت</a>
-    </button>
-
-    <script>
+  <script>
     function checkbuy() {
-    let ismin = document.getElementById('m0').checked;
-      const auto = document.getElementById('m');
+      let ismin = document.getElementById('m0').checked;
       let ischange = document.getElementById('a0').checked;
-      const change = document.getElementById('a');
 
-      if (ismin) {
-        auto.style.display = "block"; 
-      }
-      else{
-        auto.style.display = "none"; 
-      } 
-      if (ischange) {
-        change.style.display = "block"; 
-      }
-      else{
-        change.style.display="none"
-      }
-      
+      document.getElementById('m').style.display = ismin ? "block" : "none";
+      document.getElementById('a').style.display = ischange ? "block" : "none";
     }
   </script>
-  </body>
+</body>
 </html>

@@ -1,16 +1,104 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>edit</title>
-  </head>
-  <body>
-    <form action="/delate/sub2" method="post">
-      <label>نام :</label><br>
-      <input type="text" name="name" ><br>
-      <button type="submit">ثبت </button>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <title>ویرایش کالا</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #f0f4f8;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      direction: rtl;
+      color: #222;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      padding: 20px;
+    }
+
+    form {
+      background-color: white;
+      padding: 30px 40px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      width: 320px;
+      box-sizing: border-box;
+    }
+
+    label {
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 8px;
+      display: block;
+      color: #4b0082;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 12px 15px;
+      font-size: 18px;
+      border: 2px solid #4b0082;
+      border-radius: 10px;
+      margin-bottom: 25px;
+      box-sizing: border-box;
+      transition: border-color 0.3s ease;
+    }
+
+    input[type="text"]:focus {
+      border-color: #000000;
+      outline: none;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      background-color: #4b0082;
+      color: white;
+      padding: 15px 0;
+      font-size: 20px;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #000000;
+    }
+
+    /* دکمه بازگشت */
+    .back-button {
+      margin-top: 30px;
+      background-color: white;
+      border: 2px solid #4b0082;
+      padding: 12px 30px;
+      border-radius: 12px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: #4b0082;
+      text-align: center;
+      display: inline-block;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .back-button:hover {
+      background-color: #4b0082;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <form action="/delate/sub2" method="post">
+    <label for="name">نام تامین کننده:</label>
+    <input type="text" id="name" name="name" required />
+    <button type="submit">ثبت</button>
   </form>
-  <button>
-    <a href="/home/admin/seler">بازگشت</a>
-</button>
-  </body>
+
+  <a href="/home/admin/seler" class="back-button">بازگشت</a>
+
+</body>
 </html>

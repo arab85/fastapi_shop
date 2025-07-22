@@ -1,22 +1,127 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>report</title>
-  </head>
-  <body>
-    <H1>گزارش</H1>
-    <form action="/report/sub" method="post">
-      <label>نام:</label><br>
-      <input type="text" name="subject" required><br>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <title>گزارش</title>
+  <style>
+    body {
+      background-color: #f0f4f8;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      direction: rtl;
+      margin: 40px;
+      color: #333;
+    }
 
-      <textarea name="tex" rows="10" cols="50" placeholder="متن HTML خود را اینجا وارد کنید..."></textarea><br/>
-      <button type="submit">ثبت</button>
+    h1 {
+      color: #4b0082;
+      font-size: 36px;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    form {
+      background-color: white;
+      max-width: 600px;
+      margin: 0 auto 40px auto;
+      padding: 25px 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+      font-size: 18px;
+      color: #4b0082;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      resize: vertical;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    textarea::placeholder {
+      color: #999;
+      font-style: italic;
+    }
+
+    button[type="submit"] {
+      background-color: #4b0082;
+      color: white;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 10px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-weight: bold;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #330055;
+    }
+
+    .btn-group {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn-group button {
+      background-color: white;
+      border: 2px solid #4b0082;
+      border-radius: 10px;
+      padding: 12px 35px;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: bold;
+      color: #4b0082;
+      transition: all 0.3s ease;
+    }
+
+    .btn-group button:hover {
+      background-color: #4b0082;
+      color: white;
+    }
+
+    .btn-group button a {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>گزارش</h1>
+
+  <form action="/report/sub" method="post">
+    <label for="subject">نام:</label>
+    <input type="text" name="subject" id="subject" required />
+
+    <label for="tex">متن گزارش:</label>
+    <textarea name="tex" id="tex" rows="10" placeholder="متن HTML خود را اینجا وارد کنید..."></textarea>
+
+    <button type="submit">ثبت</button>
   </form>
-    <button>
-      <a href="/home/admin/report/list">لیتت گزارش</a>
-  </button>
-    <button>
-        <a href="/home/admin">بازگشت</a>
-    </button>
-  </body>
+
+  <div class="btn-group">
+    <button><a href="/home/admin/report/list">لیست گزارش</a></button>
+    <button><a href="/home/admin">بازگشت</a></button>
+  </div>
+
+</body>
 </html>

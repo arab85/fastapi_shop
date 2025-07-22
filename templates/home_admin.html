@@ -1,22 +1,104 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title> admin</title>
-  </head>
-  <body>
-    <H1>ادمین بعد ورود</H1>
-    <button>
-        <a href="/home/admin/commodity">لیست </a>
-    </button>
-    <button>
-        <a href="/home/admin/seler">تامین کننده</a>
-    </button>
-    <button>
-        <a href="/home/admin/manage">مدیریت محصولات</a>
-    </button>
-    <button>
-        <a href="/home/admin/report">گزارش</a>
-    </button>
-    
-  </body>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>ادمین بعد ورود</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #f0f4f8;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      direction: rtl;
+    }
+
+    h1 {
+      font-size: 60px;
+      margin: 0;
+      padding: 30px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      background-color: white;
+      color: #222;
+      z-index: 10;
+    }
+
+    #admin-box {
+      background-color: #4b0082;
+      height: 450px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 300px;
+      border-radius: 20px;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    p {
+      font-size: 36px;
+      margin-bottom: 40px;
+      color: white;
+      font-family: 'B Nazanin', fantasy;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 250px;
+    }
+
+    button {
+      background-color: white;
+      color: #4b0082;
+      padding: 15px;
+      cursor: pointer;
+      border: 2px solid #4b0082;
+      border-radius: 10px;
+      font-size: 18px;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #000000;
+      color: white;
+    }
+
+    button a {
+      text-decoration: none;
+      color: inherit;
+      font-weight: bold;
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    button:hover a {
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>ادمین بعد ورود</h1>
+
+  <div id="admin-box">
+    <div class="content">
+      <p>*یک گزینه را انتخاب کنید*</p>
+      <div class="buttons">
+        <button><a href="/home/admin/commodity">لیست کالا</a></button>
+        <button><a href="/home/admin/seler">تامین‌کننده</a></button>
+        <button><a href="/home/admin/manage">مدیریت محصولات</a></button>
+        <button><a href="/home/admin/report">گزارش</a></button>
+      </div>
+    </div>
+  </div>
+</body>
 </html>

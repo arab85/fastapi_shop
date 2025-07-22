@@ -1,12 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="fa">
 <head>
-    <title> ورود موفق</title>
+  <meta charset="UTF-8" />
+  <title>ورود موفق</title>
+  <style>
+    body {
+      background-color: #f0f4f8;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      direction: rtl;
+      margin: 50px;
+      color: #333;
+      text-align: center;
+    }
+
+    h2 {
+      color: #4b0082;
+      font-size: 36px;
+      margin-bottom: 40px;
+    }
+
+    button {
+      background-color: white;
+      border: 2px solid #4b0082;
+      border-radius: 10px;
+      padding: 15px 40px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 20px;
+      font-weight: bold;
+      color: #4b0082;
+    }
+
+    button:hover {
+      background-color: #4b0082;
+      color: white;
+    }
+
+    button a {
+      text-decoration: none;
+      color: inherit;
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
 </head>
 <body>
-    <h2>خوش آمدید، {{ name }}</h2>
-    <button>
-        <a href="/home/admin">ورود</a>
-    </button>
+  <h2>خوش آمدید، {{ name }}</h2>
+  <button>
+    <a href="/home/admin">ورود</a>
+  </button>
 </body>
 </html>

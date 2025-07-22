@@ -1,24 +1,106 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>mange kala</title>
-  </head>
-  <body>
-    <H1>مدیریت</H1>
-    <button>
-      <a href="/home/admin/manage/add">اضافه </a>
-  </button>
-  <button>
-    <a href="/home/admin/manage/delate">پاک کردن</a>
-</button>
-      <button>
-     <a href="/home/admin/manage/sel">درخواست خرید </a>
-      </button>
-      <button>
-        <a href="/home/admin/manage/edit">ویرایش  </a>
-         </button>
-    <button>
-        <a href="/home/admin">بازگشت</a>
-    </button>
-  </body>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <title>مدیریت کالاها</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #f0f4f8;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      direction: rtl;
+    }
+
+    h1 {
+      font-size: 60px;
+      margin: 0;
+      padding: 30px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      background-color: white;
+      color: #222;
+      z-index: 10;
+    }
+
+    #manage {
+      background-color: #4b0082;
+      height: 400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 300px;
+      border-radius: 20px;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    p {
+      font-family: 'B Nazanin', fantasy;
+      font-size: 36px;
+      margin-bottom: 40px;
+      color: white;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-width: 600px;
+    }
+
+    button {
+      background-color: white;
+      color: #4b0082;
+      padding: 15px 35px;
+      cursor: pointer;
+      border: 2px solid #4b0082;
+      border-radius: 10px;
+      font-size: 18px;
+      transition: all 0.3s ease;
+      min-width: 130px;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #000000;
+      color: white;
+    }
+
+    button a {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    button:hover a {
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>مدیریت</h1>
+
+  <div id="manage">
+    <div class="content">
+      <p>*عملیات مدیریت کالاها*</p>
+      <div class="buttons">
+        <button><a href="/home/admin/manage/add">اضافه</a></button>
+        <button><a href="/home/admin/manage/delate">پاک کردن</a></button>
+        <button><a href="/home/admin/manage/sel">درخواست خرید</a></button>
+        <button><a href="/home/admin/manage/edit">ویرایش</a></button>
+        <button><a href="/home/admin">بازگشت</a></button>
+      </div>
+    </div>
+  </div>
+</body>
 </html>

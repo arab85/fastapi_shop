@@ -1,22 +1,128 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>sign up</title>
-  </head>
-  <body>
-    <H1>sign up</H1><br>
-    <form action="/vorod" method="post">
-        <label> کاربری نام:</label><br>
-        <input type="text" name="kname" required><br>
-        <label>رمز:</label><br>
-        <input type="password" name="password" required><br>
-        <button type="submit">ارسال</button><br>
-    </form>
-    <button>
-        <a href="/users/login">log in </a>
-    </button><br>
-    <button>
-        <a href="/users">بازگشت</a>
-    </button>
-  </body>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <title>ثبت نام</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #f0f4f8;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      direction: rtl;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 150px;
+    }
+
+    h1 {
+      font-size: 48px;
+      margin-bottom: 40px;
+      color: #4b0082;
+    }
+
+    form {
+      background-color: white;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(75, 0, 130, 0.3);
+      width: 320px;
+      box-sizing: border-box;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #4b0082;
+      font-size: 18px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 25px;
+      border: 2px solid #4b0082;
+      border-radius: 8px;
+      font-size: 16px;
+      box-sizing: border-box;
+      transition: border-color 0.3s ease;
+    }
+
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+      border-color: #000000;
+      outline: none;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      background-color: #4b0082;
+      color: white;
+      font-size: 18px;
+      padding: 12px 0;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #000000;
+    }
+
+    .link-buttons {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    .link-buttons button {
+      background-color: white;
+      border: 2px solid #4b0082;
+      border-radius: 10px;
+      padding: 12px 30px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .link-buttons button:hover {
+      background-color: #000000;
+      color: white;
+      border-color: #000000;
+    }
+
+    .link-buttons a {
+      color: inherit;
+      text-decoration: none;
+      font-weight: bold;
+      display: block;
+    }
+
+    .link-buttons button:hover a {
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>ورود </h1>
+  <form action="/vorod" method="post">
+    <label for="kname">نام کاربری:</label>
+    <input type="text" id="kname" name="kname" required />
+
+    <label for="password">رمز عبور:</label>
+    <input type="password" id="password" name="password" required />
+
+    <button type="submit">ارسال</button>
+  </form>
+
+  <div class="link-buttons">
+    <button><a href="/users/login">ثبت نام</a></button>
+    <button><a href="/users">بازگشت</a></button>
+  </div>
+</body>
 </html>

@@ -1,14 +1,103 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>page 8</title>
-  </head>
-  <body>
-    <H1>سفارش </H1>
-    <p>{{a}}</p><br>
-    <p>{{b}}</p>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <title>لیست خرید</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #f0f4f8;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      direction: rtl;
+    }
+
+    h1 {
+      font-size: 60px;
+      margin: 0;
+      padding: 30px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      background-color: white;
+      color: #222;
+      z-index: 10;
+    }
+
+    #list-container {
+      background-color: #4b0082;
+      margin: 150px auto 50px auto;
+      max-width: 600px;
+      border-radius: 20px;
+      padding: 40px 30px;
+      color: white;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 40px 0;
+    }
+
+    ul li {
+      font-family: 'B Nazanin', fantasy;
+      font-size: 28px;
+      padding: 10px 15px;
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+    }
+
+    ul li:last-child {
+      border-bottom: none;
+    }
+
+    button {
+      background-color: white;
+      color: #4b0082;
+      padding: 15px 35px;
+      cursor: pointer;
+      border: 2px solid #4b0082;
+      border-radius: 10px;
+      font-size: 18px;
+      transition: all 0.3s ease;
+      display: inline-block;
+      text-align: center;
+    }
+
+    button:hover {
+      background-color: #000000;
+      color: white;
+    }
+
+    button a {
+      text-decoration: none;
+      color: inherit;
+      font-weight: bold;
+      display: block;
+    }
+
+    button:hover a {
+      color: white;
+    }
+    p{
+      font-family: "B Nazanin";
+    }
+  </style>
+</head>
+<body>
+  <h1>لیست خرید</h1>
+
+  <div id="list-container">
+    <ul>
+      {% for item in a %}
+        <li>{{ item }}</li>
+      {% endfor %}
+    </ul>
+    <p>{{b}} موجودی باقی مانده کیف پول:</p>
     <button>
-        <a href="/home/user">بازگشت</a>
+      <a href="/home/user">بازگشت</a>
     </button>
-  </body>
+  </div>
+</body>
 </html>

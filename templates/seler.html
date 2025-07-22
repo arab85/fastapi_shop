@@ -1,24 +1,81 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>mange kala</title>
-  </head>
-  <body>
-    <H1>مدیریت</H1>
-    <button>
-      <a href="/home/admin/seller/add">اضافه </a>
-  </button>
-  <button>
-    <a href="/home/admin/seller/delate">پاک کردن</a>
-</button>
-<button>
-  <a href="/home/admin/seller/edit"> edit</a>
-</button>
-      <button>
-        <a href="/home/admin/seller/list"> لیست </a>
-         </button>
-    <button>
-        <a href="/home/admin">بازگشت</a>
-    </button>
-  </body>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <title>مدیریت تامین‌کننده‌ها</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #f0f4f8;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      direction: rtl;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 60px;
+      margin: 0;
+      padding: 30px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: white;
+      color: #222;
+      z-index: 10;
+    }
+
+    #container {
+      background-color: #4b0082;
+      height: 450px;
+      margin: 300px 200px 0 200px;
+      border-radius: 20px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+    }
+
+    button {
+      background-color: white;
+      color: #4b0082;
+      padding: 15px 40px;
+      cursor: pointer;
+      border: 2px solid #4b0082;
+      border-radius: 10px;
+      font-size: 18px;
+      transition: all 0.3s ease;
+      min-width: 160px;
+    }
+
+    button:hover {
+      background-color: #000000;
+      color: white;
+    }
+
+    button a {
+      text-decoration: none;
+      color: inherit;
+      font-weight: bold;
+      display: block;
+    }
+
+    button:hover a {
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>مدیریت تامین‌کننده‌ها</h1>
+
+  <div id="container">
+    <button><a href="/home/admin/seller/add">اضافه</a></button>
+    <button><a href="/home/admin/seller/delate">پاک کردن</a></button>
+    <button><a href="/home/admin/seller/edit">ویرایش</a></button>
+    <button><a href="/home/admin/seller/list">لیست</a></button>
+    <button><a href="/home/admin">بازگشت</a></button>
+  </div>
+</body>
 </html>

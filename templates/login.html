@@ -1,28 +1,141 @@
 <!DOCTYPE html>
-<html>
+<html lang="fa">
 <head>
-    <title>login</title>
+  <meta charset="UTF-8" />
+  <title>ثبت نام</title>
+  <style>
+    body {
+      background-color: #f0f4f8;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      direction: rtl;
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      color: #333;
+    }
+
+    .container {
+      background-color: white;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    h2 {
+      text-align: center;
+      color: #4b0082;
+      margin-bottom: 30px;
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      font-size: 16px;
+      color: #4b0082;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px 12px;
+      margin-bottom: 20px;
+      border: 1.8px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border-color 0.3s ease;
+      box-sizing: border-box;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus {
+      border-color: #4b0082;
+      outline: none;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      background-color: #4b0082;
+      color: white;
+      font-size: 18px;
+      padding: 12px 0;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+      margin-bottom: 20px;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #35006b;
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .btn-group button {
+      flex: 1;
+      background-color: white;
+      border: 2px solid #4b0082;
+      color: #4b0082;
+      font-weight: bold;
+      padding: 10px 0;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-group button:hover {
+      background-color: #4b0082;
+      color: white;
+    }
+
+    .btn-group button a {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+  </style>
 </head>
 <body>
-    <h2>ثبت نام </h2>
+  <div class="container">
+    <h2>ثبت نام</h2>
     <form action="/sabt" method="post">
-        <label>نام :</label><br>
-        <input type="text" name="fname" required><br>
-        <label>فامیل :</label><br>
-        <input type="text" name="lname" required><br>
-        <label>نام کاربری:</label><br>
-        <input type="text" name="kname" required><br>
-        <label>ایمیل :</label><br>
-        <input type="email" name="email" required><br>
-        <label>رمز عبور:</label><br>
-        <input type="password" name="password" required><br><br>
-        <button type="submit">ثبت نام</button>
+      <label for="fname">نام :</label>
+      <input type="text" id="fname" name="fname" required />
+
+      <label for="lname">فامیل :</label>
+      <input type="text" id="lname" name="lname" required />
+
+      <label for="kname">نام کاربری:</label>
+      <input type="text" id="kname" name="kname" required />
+
+      <label for="email">ایمیل :</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="password">رمز عبور:</label>
+      <input type="password" id="password" name="password" required />
+
+      <button type="submit">ثبت نام</button>
     </form>
-    <button>
-        <a href="/users/signup">signup </a>
-    </button><br>
-    <button>
-        <a href="/users">بازگشت</a>
-    </button>
+
+    <div class="btn-group">
+      <button><a href="/users/signup">صفحه ورود </a></button>
+      <button><a href="/users">بازگشت</a></button>
+    </div>
+  </div>
 </body>
 </html>

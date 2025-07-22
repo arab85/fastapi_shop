@@ -1,19 +1,67 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>users</title>
-  </head>
-  <body>
-    <H1>کاربر</H1>
-    <button>
-        <a href="/users/signup">sign up</a>
-    </button>
-    <button>
-        <a href="/users/login">log in </a>
-    </button>
-    <button>
-        <a href="/">بازگشت</a>
-    </button>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <title>کاربر</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #f0f4f8;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      direction: rtl;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 150px;
+    }
 
-  </body>
+    h1 {
+      font-size: 48px;
+      color: #4b0082;
+      margin-bottom: 50px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    button {
+      background-color: white;
+      border: 2px solid #4b0082;
+      border-radius: 10px;
+      padding: 15px 40px;
+      cursor: pointer;
+      font-size: 18px;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #000000;
+      color: white;
+      border-color: #000000;
+    }
+
+    button a {
+      color: inherit;
+      text-decoration: none;
+      font-weight: bold;
+      display: block;
+    }
+
+    button:hover a {
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>کاربر</h1>
+  <div class="buttons">
+    <button><a href="/users/signup">ورود </a></button>
+    <button><a href="/users/login">ثبت نام</a></button>
+    <button><a href="/">بازگشت</a></button>
+  </div>
+</body>
 </html>

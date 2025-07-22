@@ -1,10 +1,160 @@
 <!DOCTYPE html>
-<html>
+<html lang="fa">
 <head>
-    <title>لیست محصولات</title>
+    <meta charset="UTF-8" />
+    <title>تغییر وضعیت سفارش</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #f0f4f8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            direction: rtl;
+            color: #222;
+        }
+
+        h1 {
+            font-size: 48px;
+            text-align: center;
+            padding: 30px 0;
+            margin: 0;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        ul {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 0;
+            list-style: none;
+            background-color: #4b0082;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+            color: white;
+        }
+
+        ul li {
+            padding: 15px 25px;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            font-size: 20px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        ul li:last-child {
+            border-bottom: none;
+        }
+
+        ul li strong {
+            font-family: 'B Nazanin', fantasy;
+            font-size: 24px;
+            flex-basis: 100%;
+            margin-bottom: 8px;
+            color: #ffde59;
+        }
+
+        /* وضعیت رنگی */
+        .status-Draft {
+            color: #ffb347; /* نارنجی */
+            font-weight: bold;
+        }
+
+        .status-send {
+            color: #4fc3f7; /* آبی روشن */
+            font-weight: bold;
+        }
+
+        .status-recived {
+            color: #81c784; /* سبز */
+            font-weight: bold;
+        }
+
+        .status-finish {
+            color: #d32f2f; /* قرمز */
+            font-weight: bold;
+        }
+
+        form {
+            max-width: 700px;
+            margin: 40px auto 60px auto;
+            background-color: white;
+            padding: 30px 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            font-size: 18px;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #4b0082;
+        }
+
+        form input[type="text"],
+        form input[type="number"] {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border: 2px solid #4b0082;
+            border-radius: 10px;
+            font-size: 18px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        form input[type="text"]:focus,
+        form input[type="number"]:focus {
+            border-color: #000000;
+            outline: none;
+        }
+
+        form p {
+            margin: 5px 0 20px 0;
+            color: #555;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        button[type="submit"] {
+            background-color: #4b0082;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 15px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #000000;
+        }
+    a.back-button {
+    display: block;
+    width: fit-content;
+    margin: 20px auto 60px auto;
+    background-color: #4b0082;
+    color: white;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 15px;
+    font-size: 20px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+a.back-button:hover {
+    background-color: #000000;
+}
+
+    </style>
 </head>
 <body>
-    <h1>محصولات</h1>
+    <h1>لیست محصولات</h1>
     <ul>
         {% if kalas|length == 0 %}
             <li>محصولی موجود نیست.</li>
@@ -21,31 +171,27 @@
                 {% endif %}
 
                 <li>
-                    <strong>{{ p.name }}</strong> - 
-                    {{ p.subject }} - 
-                    {{ p.id }} - 
-                    وضعیت: {{ a }}
+                    <strong>{{ p.name }}</strong> 
+                    <span>{{ p.subject }}</span> 
+                    <span>شناسه: {{ p.id }}</span> 
+                    <span class="status-{{ a|lower }}">وضعیت: {{ a }}</span>
                 </li>
             {% endfor %}
         {% endif %}
     </ul>
-    <br><br>
+
     <form action="/change/sub" method="post">
-        <label for="sku">id :</label>
-        <input type="text" id="sku" name="id" />
-        <label for="vaz">وضعیت :
-            <p>1.Draft
-                2.send
-                3.recived
-                4.finish
-            </p>
+        <label for="sku">شناسه (id):</label>
+        <input type="text" id="sku" name="id" placeholder="مثلا 1234" required />
+
+        <label for="vaz">وضعیت:
+            <p>1. Draft &nbsp;&nbsp; 2. send &nbsp;&nbsp; 3. recived &nbsp;&nbsp; 4. finish</p>
         </label>
-        <input type="number" id="vaz" name="vaz" />
-        <br /><br />
+        <input type="number" id="vaz" name="vaz" min="1" max="4" placeholder="عدد بین 1 تا 4" required />
+        
         <button type="submit">ارسال فرم</button>
     </form>
-
+    <a href="/home/admin/manage" class="back-button">بازگشت</a>
 
 </body>
-
 </html>

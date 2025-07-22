@@ -4,92 +4,138 @@
   <meta charset="UTF-8" />
   <title>فرم خرید</title>
   <style>
-    #min {
-      display: none; 
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f4f8;
+      color: #333;
+      direction: rtl;
+      margin: 40px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #4b0082;
+      margin-bottom: 30px;
+    }
+
+    .options {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+
+    .options div {
+      font-size: 18px;
+    }
+
+    label {
+      cursor: pointer;
+      user-select: none;
+    }
+
+    button {
+      background-color: white;
+      color: #4b0082;
+      border: 2px solid #4b0082;
+      border-radius: 10px;
+      padding: 12px 30px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
       margin-top: 20px;
     }
-    #auto {
-      display: none; 
-      margin-top: 20px;
+
+    button:hover {
+      background-color: #4b0082;
+      color: white;
     }
-    #change {
-      display: none; 
+
+    button a {
+      color: inherit;
+      text-decoration: none;
+      display: block;
+    }
+
+    button:hover a {
+      color: white;
+    }
+
+    form {
       margin-top: 20px;
+      display: inline-block;
+      background: white;
+      padding: 20px 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(75, 0, 130, 0.3);
+      text-align: right;
+    }
+
+    form label {
+      display: inline-block;
+      width: 120px;
+      font-weight: 600;
+    }
+
+    form input {
+      padding: 8px 10px;
+      margin-bottom: 12px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      width: 180px;
+      font-size: 16px;
     }
   </style>
 </head>
 <body>
 
+  <h1>فرم خرید</h1>
+
+  <div class="options">
     <div>
-        <input id="min0" type="radio" name="a" />
-        <label for="min0">نقطه خرید</label>
-      </div>        
-      <div>
-        <input id="auto0" type="radio" name="a"/>
-        <label for="auto0">خودکار</label>
-      </div>
-      <div>
-        <input id="change0" type="radio" name="a"/>
-        <label for="change0">تغییر وضعیت</label>
-      </div>
-        
-    <button type="button" onclick="checkbuy()">ارسال</button>
-    
+      <input id="min0" type="radio" name="a" />
+      <label for="min0">نقطه خرید</label>
+    </div>
+    <div>
+      <input id="auto0" type="radio" name="a" />
+      <label for="auto0">خودکار</label>
+    </div>
+    <div>
+      <input id="change0" type="radio" name="a" />
+      <label for="change0">تغییر وضعیت</label>
+    </div>
+  </div>
+  
+  <button type="button" onclick="checkbuy()">ارسال</button>
 
-      
-
-  <div id="min">
-    <button>
-        <a href="/min_threshold">صفحه نقطه خرید</a>
-    </button>
+  <div id="min" style="display:none; margin-top: 30px;">
+    <button><a href="/min_threshold">صفحه نقطه خرید</a></button>
   </div>
 
-  <div id="change">
-    <button>
-        <a href="/change">تغییر وضعیت  </a>
-    </button>
+  <div id="change" style="display:none; margin-top: 30px;">
+    <button><a href="/change">تغییر وضعیت</a></button>
   </div>
 
-  <form id="auto" action="/buy/sub" method="post">
+  <form id="auto" action="/buy/sub" method="post" style="display:none;">
     <label for="sku">sku :</label>
-    <input type="number" id="sku" name="sku" />
+    <input type="number" id="sku" name="sku" /><br />
     <label for="tedad">تعداد :</label>
-    <input type="number" id="tedad" name="tedad" />
-    <label for="selr ">نام تامین کننده :</label>
-    <input type="text" id="selr" name="selr" />
-    <br /><br />
+    <input type="number" id="tedad" name="tedad" /><br />
+    <label for="selr">نام تامین کننده :</label>
+    <input type="text" id="selr" name="selr" /><br />
     <button type="submit">ارسال فرم</button>
   </form>
 
-
-
   <script>
     function checkbuy() {
-    let ismin = document.getElementById('min0').checked;
-    let isauto = document.getElementById('auto0').checked;
-      const min = document.getElementById('min');
-      const auto = document.getElementById('auto');
-      let ischange = document.getElementById('change0').checked;
-      const change = document.getElementById('change');
+      const ismin = document.getElementById('min0').checked;
+      const isauto = document.getElementById('auto0').checked;
+      const ischange = document.getElementById('change0').checked;
 
-      if (ismin) {
-        min.style.display = "block"; 
-      }
-      else{
-        min.style.display = "none"; 
-      } 
-      if (isauto) {
-        auto.style.display = "block"; 
-      }
-      else{
-        auto.style.display = "none"; 
-      } 
-      if (ischange) {
-        change.style.display = "block"; 
-      }
-      else{
-        change.style.display = "none"; 
-      } 
+      document.getElementById('min').style.display = ismin ? 'block' : 'none';
+      document.getElementById('auto').style.display = isauto ? 'inline-block' : 'none';
+      document.getElementById('change').style.display = ischange ? 'block' : 'none';
     }
   </script>
 

@@ -1,6 +1,52 @@
-<html>
+<!DOCTYPE html>
+<html lang="fa">
 <head>
+    <meta charset="UTF-8" />
     <title>ادیت کالا موفق</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #f0f4f8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            direction: rtl;
+            color: #222;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            padding: 20px;
+        }
+        h2 {
+            font-size: 48px;
+            color: #4b0082;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 22px;
+            margin-bottom: 40px;
+            color: #555;
+        }
+        button {
+            background-color: #4b0082;
+            border: none;
+            border-radius: 12px;
+            padding: 15px 40px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #000;
+        }
+        button a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            display: inline-block;
+        }
+    </style>
 </head>
 <body>
     <h2>ادیت شد {{ kalas }}</h2>

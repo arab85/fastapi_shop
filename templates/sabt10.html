@@ -1,16 +1,69 @@
-<html>
+<!DOCTYPE html>
+<html lang="fa">
 <head>
-    <title>ادیت کالا موفق</title>
+  <meta charset="UTF-8" />
+  <title>ویرایش کالا موفق</title>
+  <style>
+    body {
+      background-color: #f0f4f8;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      direction: rtl;
+      margin: 40px;
+      color: #333;
+      text-align: center;
+    }
+
+    h2 {
+      color: #4b0082;
+      font-size: 36px;
+      margin-bottom: 40px;
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      background-color: white;
+      border: 2px solid #4b0082;
+      border-radius: 10px;
+      padding: 12px 30px;
+      font-size: 16px;
+      cursor: pointer;
+      font-weight: bold;
+      color: #4b0082;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #4b0082;
+      color: white;
+    }
+
+    button a {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    button:hover a {
+      color: white;
+    }
+  </style>
 </head>
 <body>
-    <h2>ادیت شد {{ name }}</h2>
+
+  <h2>کالا "{{ name }}" با موفقیت ویرایش شد</h2>
+
+  <div class="btn-group">
     {% if vaz == 4 %}
-        <button>
-            <a href="/confir"> برای اضافه کردن به فروشگاه تایید نهایی</a>
-        </button>
+      <button><a href="/confir">تأیید نهایی برای افزودن به فروشگاه</a></button>
     {% endif %}
-    <button>
-        <a href="/home/admin/manage">بازگشت</a>
-    </button>
+    <button><a href="/home/admin/manage">بازگشت</a></button>
+  </div>
+
 </body>
 </html>

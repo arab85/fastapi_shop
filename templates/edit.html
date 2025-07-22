@@ -4,164 +4,266 @@
   <meta charset="UTF-8" />
   <title>فرم خرید</title>
   <style>
-    #name {
-      display: none; 
-      margin-top: 20px;
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      direction: rtl;
+      background-color: #f0f4f8;
+      padding: 40px 20px;
+      color: #222;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
     }
-    #tel {
-      display: none; 
-      margin-top: 20px;
+
+    .container {
+      display: flex;
+      gap: 40px;
+      max-width: 900px;
+      width: 100%;
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      padding: 30px 40px;
     }
-    #email {
-      display: none; 
-      margin-top: 20px;
+
+    /* سمت چپ: گروه چک‌باکس‌ها */
+    .checkbox-group {
+      flex: 1;
+      background: #fafafa;
+      padding: 25px 30px;
+      border-radius: 15px;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
     }
-    #subject {
-      display: none; 
-      margin-top: 20px;
+
+    .checkbox-group h2 {
+      margin-top: 0;
+      color: #4b0082;
+      font-weight: bold;
+      font-size: 22px;
+      margin-bottom: 20px;
+      text-align: center;
     }
+
+    .checkbox-group div {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .checkbox-group label {
+      font-weight: normal;
+      font-size: 17px;
+      color: #333;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    /* سمت راست: فرم */
+    form#form {
+      flex: 2;
+      display: none;
+      flex-direction: column;
+      padding: 25px 30px;
+      border-radius: 15px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      max-width: 100%;
+    }
+
+    .input-group {
+      margin-bottom: 22px;
+      display: none;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+      color: #4b0082;
+      font-size: 18px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="email"],
+    input[type="range"] {
+      width: 100%;
+      padding: 10px 15px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 2px solid #4b0082;
+      box-sizing: border-box;
+      transition: border-color 0.3s ease;
+    }
+
+    input[type="text"]:focus,
+    input[type="number"]:focus,
+    input[type="email"]:focus,
+    input[type="range"]:focus {
+      border-color: #000;
+      outline: none;
+    }
+
     #pointValue {
-      display: none; 
-      margin-top: 20px;
+      display: inline-block;
+      margin-right: 10px;
+      font-weight: bold;
+      color: #4b0082;
     }
-    #time {
-      display: none; 
-      margin-top: 20px;
+
+    button[type="button"],
+    button[type="submit"] {
+      background-color: #4b0082;
+      border: none;
+      color: white;
+      font-size: 18px;
+      padding: 12px 30px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 10px;
+      align-self: flex-start;
     }
-    #from {
-      display: none; 
-      margin-top: 20px;
+    button[type="button"]:hover,
+    button[type="submit"]:hover {
+      background-color: #000;
+    }
+
+    /* دکمه بازگشت */
+    .back-button {
+      display: inline-block;
+      margin-top: 30px;
+      background-color: white;
+      border: 2px solid #4b0082;
+      padding: 12px 30px;
+      border-radius: 12px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: #4b0082;
+      text-decoration: none;
+      font-weight: bold;
+      text-align: center;
+      align-self: flex-start;
+    }
+    .back-button:hover {
+      background-color: #4b0082;
+      color: white;
     }
   </style>
 </head>
 <body>
 
-    <div>
+  <div class="container">
+    <div class="checkbox-group">
+      <h2>فیلدهای مورد نظر خود را انتخاب کنید</h2>
+
+      <div>
         <input id="name0" type="checkbox"/>
-        <label for="name0">اسم </label>
+        <label for="name0">اسم</label>
       </div>        
+
       <div>
         <input id="subject0" type="checkbox" />
         <label for="subject0">موضوع</label>
       </div>
+
       <div>
         <input id="tel0" type="checkbox"/>
         <label for="tel0">تلفن</label>
       </div>
+
       <div>
         <input id="email0" type="checkbox" />
         <label for="email0">ایمیل</label>
       </div>
+
       <div>
         <input id="point0" type="checkbox" />
         <label for="point0">امتیاز</label>
       </div>
+
       <div>
         <input id="time0" type="checkbox" />
         <label for="time0">زمان تحویل</label>
       </div>
-        
-    <button type="button" onclick="checkbuy()">ارسال</button>
 
-      
+      <button type="button" onclick="checkbuy()">ارسال</button>
+    </div>
 
-    <form id="from" action="/edit/sub" method="post">
-        <label for = "name">نام :</label><br>
-        <input id="name" type="text" name="name" ><br>
+    <form id="form" action="/edit/sub" method="post" dir="rtl">
+      <div id="nameGroup" class="input-group">
+        <label for="name">نام :</label>
+        <input id="name" type="text" name="name" >
+      </div>
 
+      <div id="pointGroup" class="input-group">
+        <label for="pointRange">امتیاز :</label>
+        <input type="range" min="1" max="10" name="point" id="pointRange" >
+        <span id="pointValue">5</span>
+      </div>
 
-    <label for ="pointValue" >point :</label><br>
-    <input type="range" min="1" max="10" name="point" id="pointRange" >
-    <span id="pointValue">5</span> <!-- اینجا مقدار اولیه اسلایدر رو میذاریم --> 
+      <div id="telGroup" class="input-group">
+        <label for="tel">تلفن :</label>
+        <input type="number" id="tel" name="tel" >
+      </div>
 
+      <div id="timeGroup" class="input-group">
+        <label for="time">زمان تحویل :</label>
+        <input id="time" type="number" name="time" step="1" >
+      </div>
 
-    <label for = " tel">tel :</label><br>
-    <input type="number" id = "tel" name="tel" ><br>
+      <div id="emailGroup" class="input-group">
+        <label for="email">ایمیل :</label>
+        <input id="email" type="email" name="email" >
+      </div>
 
+      <div id="subjectGroup" class="input-group">
+        <label for="subject">دسته :</label>
+        <input type="text" id="subject" name="subject" >
+      </div>
 
-    <label for="time">time :</label><br>
-    <input id = "time" type="number" name="time" step="1" ><br>
+      <label>اسم اولیه</label>
+      <input type="text" name="namea" >
 
+      <button type="submit">ثبت</button>
+    </form>
+  </div>
 
-    <label for = "email"> email :</label><br>
-    <input id="email" type="email" name="email" ><br><br>
-
-
-    <label for = "subject">دسته :</label><br>
-    <input type="text" id="subject" name="subject" ><br>
-
-    <label>اسم اولیه</label>
-    <input type="text" name="namea" >
-
-    <button type="submit">ثبت </button>
-</form>
-  <button>
-    <a href="/home/admin/seler">بازگشت</a>
-</button>
-
+  <a href="/home/admin/seler" class="back-button">بازگشت</a>
 
   <script>
     function checkbuy() {
-    let isname = document.getElementById('name0').checked;
-    let istel = document.getElementById('tel0').checked;
-    let issubject = document.getElementById('subject0').checked;
-    let ispoint = document.getElementById('point0').checked;
-    let isemail = document.getElementById('email0').checked;
-    let istime = document.getElementById('time0').checked;
-    const name = document.getElementById('name');
-    const tel = document.getElementById('tel');
-    const subject = document.getElementById('subject');
-    const point = document.getElementById('pointValue');
-    const email = document.getElementById('email');
-    const time = document.getElementById('time');
-    document.getElementById('from').style.display="block";
+      let isname = document.getElementById('name0').checked;
+      let istel = document.getElementById('tel0').checked;
+      let issubject = document.getElementById('subject0').checked;
+      let ispoint = document.getElementById('point0').checked;
+      let isemail = document.getElementById('email0').checked;
+      let istime = document.getElementById('time0').checked;
 
-      if (isname) {
-        name.style.display = "block"; 
-      }
-      else{
-        name.style.display = "none"; 
-      } 
-      if (isemail) {
-        email.style.display = "block"; 
-      }
-      else{
-        email.style.display = "none"; 
-      } 
-      if (ispoint) {
-        point.style.display = "block"; 
-      }
-      else{
-        point.style.display = "none"; 
-      } 
-      if (issubject) {
-        subject.style.display = "block"; 
-      }
-      else{
-        subject.style.display = "none"; 
-      } 
-      if (istel) {
-        tel.style.display = "block"; 
-      }
-      else{
-        tel.style.display = "none"; 
-      } 
-      if (istime) {
-        time.style.display = "block"; 
-      }
-      else{
-        time.style.display = "none"; 
-      }
+      // نمایش فرم کلی
+      document.getElementById('form').style.display = "flex";
+
+      // مخفی/نمایش گروه‌های ورودی
+      document.getElementById('nameGroup').style.display = isname ? 'block' : 'none';
+      document.getElementById('telGroup').style.display = istel ? 'block' : 'none';
+      document.getElementById('subjectGroup').style.display = issubject ? 'block' : 'none';
+      document.getElementById('pointGroup').style.display = ispoint ? 'block' : 'none';
+      document.getElementById('emailGroup').style.display = isemail ? 'block' : 'none';
+      document.getElementById('timeGroup').style.display = istime ? 'block' : 'none';
+
+    
       const rangeInput = document.getElementById('pointRange');
       const rangeValue = document.getElementById('pointValue');
-
-      // مقدار اولیه رو میذاریم برابر مقدار پیش‌فرض اسلایدر
       rangeValue.textContent = rangeInput.value;
 
-      // وقتی کاربر اسلایدر رو تغییر داد، مقدارش رو نمایش بده
-      rangeInput.addEventListener('input', () => {
+      rangeInput.oninput = () => {
         rangeValue.textContent = rangeInput.value;
-      });
+      };
     }
   </script>
 

@@ -80,19 +80,21 @@ def buy(request: Request , db : Session=Depends(get_db1) , db2 : Session = Depen
         return HTMLResponse("وارد شوید", status_code=401)
     else:
         b = user.kifp
-
-    for i in range (len(a)):
-        q +=db.query(commodity).filter(commodity.id==a[i]).first().price
-        c = a[i]
-        a[i] = db.query(commodity).filter(commodity.id==a[i]).first().name
-    if q<= b and db.query(commodity).filter(commodity.id==c).first().tedad>0 :
-        b-=q
-        db.query(commodity).filter(commodity.id==c).first().tedad -= 1   
-        db.commit()
-        db2.commit()
-        return templates.TemplateResponse("buy.html", {"request": request , "a":a, "b":b})
+    if len(a)!=0:
+        for i in range (len(a)):
+            q +=db.query(commodity).filter(commodity.id==a[i]).first().price
+            c = a[i]
+            a[i] = db.query(commodity).filter(commodity.id==a[i]).first().name
+        if q<= b and db.query(commodity).filter(commodity.id==c).first().tedad>0 :
+            user.kifp-=q
+            db.query(commodity).filter(commodity.id==c).first().tedad -= 1   
+            db.commit()
+            db2.commit()
+            return templates.TemplateResponse("buy.html", {"request": request , "a":a, "b":user.kifp})
+        else:
+            return HTMLResponse("موجودی کم ", status_code=401)
     else:
-        return HTMLResponse("موجودی کم ", status_code=401)
+        return HTMLResponse("کالایی نیست  ", status_code=401)
 #سفارش 
 @router4.get("/home/user/kif", response_class=HTMLResponse)
 def kif(request: Request,db: Session = Depends(get_db2)):

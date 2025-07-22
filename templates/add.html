@@ -1,26 +1,112 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>sabt</title>
+    <title>add kala</title>
+    <style>
+    h1 {
+      font-size: 60px;
+      margin: 0;
+      padding: 30px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      background-color: white;
+      color: #222;
+      
+    } 
+    .form{
+      background-color: #4b0082;
+      height: 400px;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      margin: 300px;
+      border-radius: 20px;
+
+    }  
+    .form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  label {
+    color: white;
+    width: 100px; 
+    margin-right: 10px;
+  }
+  
+  input {
+    flex: 1;
+    padding: 5px;
+  }
+  
+  button {
+    margin-top: 15px;
+    padding: 8px 15px;
+    cursor: pointer;
+  }
+  
+
+  body {
+    background-color:lightgrey;
+    font-family: sans-serif;
+  }
+  button a{
+  color: red;
+  position: static;
+  text-decoration: none;
+  padding: 12px 20px;
+  font-weight: bold;
+  background-color: transparent;
+  cursor: pointer; 
+}
+
+#b:hover {
+  background-color: #090707;
+  color: white; /* اگر خواستی رنگ متن هم تغییر کنه */
+}
+    </style>
 </head>
 <body>
-    <h2>ثبت کالا </h2>
-    <form action="/add/sub" method="post">
-        <label>نام :</label><br>
-        <input type="text" name="name" required><br>
-        <label>کد :</label><br>
-        <input type="number" name="sku" required><br>
-        <label>قیمت :</label><br>
-        <input type="number" name="price" step="10" required><br>
-        <label>تعداد :</label><br>
-        <input type="number" name="tedad" step="1" required><br>
-        <label> نقطه خرید:</label><br>
-        <input type="number" name="min_threshold" required><br><br>
-        <label>دسته :</label><br>
-        <input type="text" name="subject" required><br>
-        <button type="submit">ثبت </button>
+    <h1>ثبت کالا </h1>
+    <form action="/add/sub" method="post" class="form">
+        <div class="form-group">
+            <label for="name">نام :</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="sku">کد :</label>
+            <input type="number" id="sku" name="sku" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="price">قیمت :</label>
+            <input type="number" id="price" name="price" step="10" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="tedad">تعداد :</label>
+            <input type="number" id="tedad" name="tedad" step="1" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="min_threshold">نقطه خرید:</label>
+            <input type="number" id="min_threshold" name="min_threshold" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="subject">دسته :</label>
+            <input type="text" id="subject" name="subject" required>
+          </div>
+          
+          <button type="submit">ثبت</button>
     </form>
-    <button>
+    <button id="b">
         <a href="/home/admin/manage">بازگشت</a>
     </button>
 </body>

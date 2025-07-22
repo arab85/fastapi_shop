@@ -1,19 +1,122 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>admin</title>
-  </head>
-  <body>
-    <H1>ادمین</H1>
-    <form action="/sub" method="post">
-      <label>نام:</label><br>
-      <input type="text" name="name" required><br>
-      <label>رمز:</label><br>
-      <input type="password" name="password" required><br>
-      <button type="submit">ورود</button>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>ورود ادمین</title>
+
+  <!-- فونت فارسی Vazir از CDN -->
+  <link href="https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir.css" rel="stylesheet" type="text/css" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background-color: #f0f0f0;
+      font-family: 'Vazir', sans-serif;
+      direction: rtl;
+    }
+
+    h1 {
+      font-size: 50px;
+      margin: 0;
+      padding: 30px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      background-color: white;
+      color: #333;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .form {
+      background-color: #ffffff;
+      max-width: 400px;
+      margin: 200px auto;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      font-size: 16px;
+      margin-bottom: 5px;
+      color: #444;
+    }
+
+    input {
+      padding: 10px;
+      font-size: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      transition: border-color 0.3s;
+    }
+
+    input:focus {
+      border-color: #4b0082;
+      outline: none;
+    }
+
+    button {
+      background-color: #4b0082;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #36006d;
+    }
+
+    .back-btn {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #4b0082;
+      font-weight: bold;
+      font-size: 15px;
+      transition: color 0.3s;
+    }
+
+    .back-btn:hover {
+      color: #090707;
+    }
+  </style>
+</head>
+<body>
+  <h1>ورود ادمین</h1>
+
+  <form action="/sub" method="post" class="form">
+    <div class="form-group">
+      <label for="name">نام کاربری:</label>
+      <input type="text" id="name" name="name" required>
+    </div>
+
+    <div class="form-group">
+      <label for="password">رمز عبور:</label>
+      <input type="password" id="password" name="password" required>
+    </div>
+
+    <button type="submit">ورود</button>
+
+    <a class="back-btn" href="/">بازگشت به صفحه اصلی</a>
   </form>
-  <button>
-    <a href="/">بازگشت</a>
-</button>
-  </body>
+</body>
 </html>
